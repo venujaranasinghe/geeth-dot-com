@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Home, User, FolderOpen, BookOpen, Rss, Mail } from 'lucide-react'
+import { Home, User, FolderOpen, BookOpen, Rss, Mail, Menu } from 'lucide-react' // Added Menu icon
 import { useTheme } from "../contexts/ThemeContext"
 import { ThemeToggle } from "./ThemeToggle"
+import { cn } from "../lib/util"
+import { Button } from "../components/ui/button" // Import Button for hamburger
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "../components/ui/sheet" // Import Sheet components
 
 const menuItems = [
   {
@@ -89,7 +92,6 @@ const sharedTransition = {
   duration: 0.5,
 }
 
-// Smooth scroll function (re-added)
 const smoothScroll = (targetId) => {
   const element = document.getElementById(targetId.replace('#', ''))
   if (element) {
@@ -104,6 +106,7 @@ export function PortfolioNavbar() {
   const { theme } = useTheme()
   const isDarkTheme = theme === "dark"
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false) // State for mobile menu
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,41 +120,41 @@ export function PortfolioNavbar() {
     }
   }, [])
 
-  const navbarClasses = `
+  const navbarBaseClasses = `
     p-2 rounded-full relative overflow-hidden
     transition-all duration-300 ease-in-out
-    ${isScrolled
-      ? 'bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-xl border border-border/40 shadow-lg'
-      : 'bg-gradient-to-b from-background/60 to-background/10 backdrop-blur-lg border border-border/30 shadow-md'
-    }
   `
 
-  const glowColors = `
-    absolute -inset-2 bg-gradient-radial from-transparent rounded-full z-0 pointer-events-none
-    ${isScrolled
-      ? (isDarkTheme
-          ? "via-blue-400/30 via-30% via-purple-400/30 via-60% via-red-400/30 via-90%"
-          : "via-blue-400/20 via-30% via-purple-400/20 via-60% via-red-400/20 via-90%")
-      : (isDarkTheme
-          ? "via-blue-400/20 via-30% via-purple-400/20 via-60% via-red-400/20 via-90%"
-          : "via-blue-400/10 via-30% via-purple-400/10 via-60% via-red-400/10 via-90%")
-    }
-  `
+  const desktopNavbarClasses = cn(
+    navbarBaseClasses,
+    isScrolled
+      ? 'bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-xl border border-border/40 shadow-lg'
+      : 'bg-gradient-to-b from-background/60 to-background/10 backdrop-blur-lg border border-border/30 shadow-md'
+  )
+
+  const mobileNavbarClasses = cn(
+    "fixed top-4 right-4 z-50 p-2 rounded-full",
+    isScrolled
+      ? 'bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-xl border border-border/40 shadow-lg'
+      : 'bg-gradient-to-b from-background/60 to-background/10 backdrop-blur-lg border border-border/30 shadow-md'
+  )
 
   const handleNavClick = (e, href) => {
     e.preventDefault()
     smoothScroll(href)
+    setIsMobileMenuOpen(false) // Close mobile menu on click
   }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
+      {/* Desktop Navigation */}
       <motion.nav
-        className={navbarClasses}
+        className={cn(desktopNavbarClasses, "hidden sm:flex")} // Hide on small screens
         initial="initial"
         whileHover="hover"
       >
         <motion.div
-          className={glowColors}
+          className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"
           variants={navGlowVariants}
         />
         <div className="flex items-center gap-1 relative z-10">
@@ -206,6 +209,39 @@ export function PortfolioNavbar() {
           </div>
         </div>
       </motion.nav>
+
+      {/* Mobile Navigation (Hamburger Menu) */}
+      <div className={cn(mobileNavbarClasses, "sm:hidden")}> {/* Show only on small screens */}
+        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" aria-label="Open menu">
+              <Menu className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full sm:max-w-xs bg-background/95 backdrop-blur-lg border-l border-border/40 flex flex-col">
+            <div className="flex justify-end p-4">
+              {/* SheetClose is automatically added by SheetContent, no need for explicit button here */}
+            </div>
+            <nav className="flex flex-col gap-4 p-4 flex-grow">
+              {menuItems.map((item) => (
+                <SheetClose asChild key={item.label}> {/* Use SheetClose to close on click */}
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="flex items-center gap-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
+                  >
+                    <span className={item.iconColor}>{item.icon}</span>
+                    {item.label}
+                  </a>
+                </SheetClose>
+              ))}
+            </nav>
+            <div className="p-4 border-t border-border/40 flex justify-center">
+              <ThemeToggle />
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </header>
   )
 }
