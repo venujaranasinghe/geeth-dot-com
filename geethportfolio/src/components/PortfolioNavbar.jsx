@@ -89,7 +89,7 @@ const sharedTransition = {
   duration: 0.5,
 }
 
-// Smooth scroll function
+// Smooth scroll function (re-added)
 const smoothScroll = (targetId) => {
   const element = document.getElementById(targetId.replace('#', ''))
   if (element) {

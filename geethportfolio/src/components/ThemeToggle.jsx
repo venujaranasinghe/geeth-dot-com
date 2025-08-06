@@ -1,12 +1,12 @@
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from "../contexts/ThemeContext"
-import { Switch } from "./ui/switch"
+import { Switch } from "../components/ui/switch"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light")
+  const toggleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light")
   }
 
   return (
@@ -18,7 +18,7 @@ export function ThemeToggle() {
       />
       <Switch
         checked={theme === "dark"}
-        onChange={toggleTheme}
+        onCheckedChange={toggleTheme}
         aria-label="Toggle theme"
         className="transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110"
       />
