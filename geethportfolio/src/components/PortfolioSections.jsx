@@ -62,7 +62,7 @@ export function ProjectsSection() {
       image: "/modern-web-app-dashboard.png"
     },
     {
-      title: "Project Two", 
+      title: "Project Two",
       description: "Full-stack application with real-time features",
       tech: ["Next.js", "Node.js", "PostgreSQL"],
       image: "/mobile-app-interface.png"
@@ -82,8 +82,8 @@ export function ProjectsSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div key={index} className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-shadow">
-              <img 
-                src={project.image || "/placeholder.svg"} 
+              <img
+                src={project.image || "/placeholder.svg"}
                 alt={project.title}
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
@@ -96,6 +96,81 @@ export function ProjectsSection() {
                   </span>
                 ))}
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function EducationSection() {
+  const educationItems = [
+    {
+      degree: "Master of Science in Computer Science",
+      institution: "University of Example",
+      year: "2023",
+      details: "Specialized in AI and Machine Learning. Thesis on Neural Network Optimization."
+    },
+    {
+      degree: "Bachelor of Science in Software Engineering",
+      institution: "Tech Institute",
+      year: "2021",
+      details: "Focused on full-stack web development and data structures. Graduated with honors."
+    }
+  ]
+
+  return (
+    <section id="education" className="min-h-screen flex items-center justify-center px-4 py-20 bg-muted/30">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl md:text-5xl font-bold mb-12">Education</h2>
+        <div className="space-y-8">
+          {educationItems.map((item, index) => (
+            <div key={index} className="bg-card border border-border rounded-2xl p-6 text-left">
+              <h3 className="text-2xl font-semibold mb-2">{item.degree}</h3>
+              <p className="text-lg text-muted-foreground mb-1">{item.institution} - {item.year}</p>
+              <p className="text-muted-foreground">{item.details}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function BlogSection() {
+  const blogPosts = [
+    {
+      title: "Mastering React Hooks for Better Performance",
+      date: "July 25, 2025",
+      excerpt: "A deep dive into optimizing React components using useCallback, useMemo, and React.memo.",
+      link: "#"
+    },
+    {
+      title: "Building Scalable APIs with Node.js and Express",
+      date: "June 10, 2025",
+      excerpt: "Best practices for structuring your Node.js API, handling authentication, and database integration.",
+      link: "#"
+    },
+    {
+      title: "The Future of Web Development: AI and Beyond",
+      date: "May 1, 2025",
+      excerpt: "Exploring how AI is transforming front-end and back-end development workflows.",
+      link: "#"
+    }
+  ]
+
+  return (
+    <section id="blog" className="min-h-screen flex items-center justify-center px-4 py-20">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl md:text-5xl font-bold mb-12">My Blog</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post, index) => (
+            <div key={index} className="bg-card border border-border rounded-2xl p-6 text-left hover:shadow-lg transition-shadow">
+              <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
+              <p className="text-sm text-muted-foreground mb-3">{post.date}</p>
+              <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+              <a href={post.link} className="text-primary hover:underline">Read More &rarr;</a>
             </div>
           ))}
         </div>
@@ -122,17 +197,17 @@ export function ContactSection() {
             </div>
           </div>
           <form className="space-y-4">
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Your Name"
               className="w-full px-4 py-2 border border-border rounded-lg bg-background"
             />
-            <input 
-              type="email" 
+            <input
+              type="email"
               placeholder="Your Email"
               className="w-full px-4 py-2 border border-border rounded-lg bg-background"
             />
-            <textarea 
+            <textarea
               placeholder="Your Message"
               rows={4}
               className="w-full px-4 py-2 border border-border rounded-lg bg-background"

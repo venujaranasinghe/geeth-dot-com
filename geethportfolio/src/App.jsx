@@ -1,6 +1,6 @@
 import { ThemeProvider } from "./components/contexts/ThemeContext"
 import { PortfolioLayout } from "./components/PortfolioLayout"
-import { HeroSection, AboutSection, ProjectsSection, ContactSection } from "./components/PortfolioSections"
+import { HeroSection, AboutSection, ProjectsSection, EducationSection, BlogSection, ContactSection } from "./components/PortfolioSections"
 
 function App() {
   return (
@@ -9,6 +9,8 @@ function App() {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
+        <EducationSection /> {/* New section */}
+        <BlogSection />      {/* New section */}
         <ContactSection />
       </PortfolioLayout>
     </ThemeProvider>
