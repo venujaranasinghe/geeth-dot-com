@@ -1,5 +1,5 @@
 import React from "react"
-import { cn } from "../lib/util"
+import { cn } from "../../lib/util"
 
 const Switch = React.forwardRef(({ className, ...props }, ref) => {
   return (

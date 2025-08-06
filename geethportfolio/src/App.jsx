@@ -1,17 +1,23 @@
-import { ThemeProvider } from "./components/contexts/ThemeContext"
+import { ThemeProvider } from "./contexts/ThemeContext"
 import { PortfolioLayout } from "./components/PortfolioLayout"
-import { HeroSection, AboutSection, ProjectsSection, EducationSection, BlogSection, ContactSection } from "./components/PortfolioSections"
+// Import individual sections from the new 'sections' directory
+import { HomePage } from "./sections/HeroSection"
+import { AboutPage } from "./sections/AboutSection"
+import { ProjectsPage } from "./sections/ProjectsSection"
+import { EducationPage } from "./sections/EducationSection"
+import { BlogPage } from "./sections/BlogSection"
+import { ContactPage } from "./sections/ContactSection"
 
 function App() {
   return (
     <ThemeProvider>
       <PortfolioLayout>
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <EducationSection /> {/* New section */}
-        <BlogSection />      {/* New section */}
-        <ContactSection />
+        <HomePage />
+        <AboutPage />
+        <ProjectsPage />
+        <EducationPage />
+        <BlogPage />
+        <ContactPage />
       </PortfolioLayout>
     </ThemeProvider>
   )

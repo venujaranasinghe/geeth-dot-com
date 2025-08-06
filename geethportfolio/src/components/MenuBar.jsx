@@ -1,7 +1,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { Home, Settings, Bell, User } from 'lucide-react'
-import { useTheme } from "./contexts/ThemeContext"
+import { useTheme } from "../contexts/ThemeContext"
 
 const menuItems = [
   {

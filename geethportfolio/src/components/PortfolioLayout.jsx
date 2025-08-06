@@ -6,7 +6,7 @@ export function PortfolioLayout({ children }) {
     <div className="min-h-screen bg-background">
       <PortfolioNavbar />
       <main className="pt-20">
-        {children}
+        {children} {/* This is where the section components will be rendered */}
       </main>
     </div>
   )
