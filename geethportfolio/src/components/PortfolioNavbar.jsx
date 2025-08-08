@@ -128,15 +128,15 @@ export function PortfolioNavbar() {
   const desktopNavbarClasses = cn(
     navbarBaseClasses,
     isScrolled
-      ? 'bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-xl border border-border/40 shadow-lg'
-      : 'bg-gradient-to-b from-background/60 to-background/10 backdrop-blur-lg border border-border/30 shadow-md'
+      ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-gray-200/40 dark:border-gray-700/40 shadow-lg'
+      : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-gray-200/30 dark:border-gray-700/30 shadow-md'
   )
 
   const mobileNavbarClasses = cn(
     "fixed top-4 right-4 z-50 p-2 rounded-full",
     isScrolled
-      ? 'bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-xl border border-border/40 shadow-lg'
-      : 'bg-gradient-to-b from-background/60 to-background/10 backdrop-blur-lg border border-border/30 shadow-md'
+      ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-gray-200/40 dark:border-gray-700/40 shadow-lg'
+      : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-gray-200/30 dark:border-gray-700/30 shadow-md'
   )
 
   const handleNavClick = (e, href) => {
@@ -149,7 +149,7 @@ export function PortfolioNavbar() {
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
       {/* Desktop Navigation */}
       <motion.nav
-        className={cn(desktopNavbarClasses, "hidden sm:flex")} // Hide on small screens
+        className={cn(desktopNavbarClasses, "hidden md:flex")} // Show on medium screens and up
         initial="initial"
         whileHover="hover"
       >
@@ -179,26 +179,26 @@ export function PortfolioNavbar() {
                   <motion.a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 relative z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-full cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 relative z-10 bg-transparent text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors rounded-full cursor-pointer"
                     variants={itemVariants}
                     transition={sharedTransition}
                   >
                     <span className={`transition-colors duration-300 group-hover:${item.iconColor}`}>
                       {item.icon}
                     </span>
-                    <span className="hidden sm:inline">{item.label}</span>
+                    <span className="hidden lg:inline">{item.label}</span>
                   </motion.a>
                   <motion.a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 absolute inset-0 z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-full cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 absolute inset-0 z-10 bg-transparent text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors rounded-full cursor-pointer"
                     variants={backVariants}
                     transition={sharedTransition}
                   >
                     <span className={`transition-colors duration-300 group-hover:${item.iconColor}`}>
                       {item.icon}
                     </span>
-                    <span className="hidden sm:inline">{item.label}</span>
+                    <span className="hidden lg:inline">{item.label}</span>
                   </motion.a>
                 </motion.div>
               </motion.li>
@@ -211,7 +211,7 @@ export function PortfolioNavbar() {
       </motion.nav>
 
       {/* Mobile Navigation (Hamburger Menu) */}
-      <div className={cn(mobileNavbarClasses, "sm:hidden")}> {/* Show only on small screens */}
+      <div className={cn(mobileNavbarClasses, "md:hidden")}> {/* Show only on small to medium screens */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" aria-label="Open menu">
