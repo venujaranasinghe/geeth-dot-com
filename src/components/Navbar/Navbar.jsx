@@ -172,7 +172,6 @@ const Navbar = () => {
           .nav-menu {
             position: fixed;
             top: 0;
-            right: -350px; /* Hidden by default, slide in from right */
             width: 280px; /* Mobile menu width */
             height: 100%;
             background-color: #2c3e50; /* Same dark background */
@@ -183,6 +182,7 @@ const Navbar = () => {
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* Clearer shadow */
             transition: right 0.5s ease; /* Smooth transition */
             z-index: 1001;
+            right: -280px; /* Explicitly set closed position, matching width */
           }
           .nav-menu.nav-menu-open {
             right: 0; /* Slide in when open */
