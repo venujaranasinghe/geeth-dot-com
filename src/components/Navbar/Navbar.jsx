@@ -1,10 +1,11 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react" // Import useEffect
 import { Link as ScrollLink } from "react-scroll"
 import { FaBars, FaTimes } from "react-icons/fa" // Import icons
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false) // New state for scroll transparency
 
   const openMenu = () => {
     setIsMenuOpen(true)
@@ -13,6 +14,22 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsMenuOpen(false)
   }
+
+  // Effect to handle scroll transparency
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) { // Adjust scroll threshold as needed
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   return (
     <div className="navbar">
@@ -66,27 +83,28 @@ const Navbar = () => {
           display: flex;
           align-items: center;
           justify-content: center; /* Center content horizontally */
-          padding: 15px 40px; /* Adjusted padding for pill shape */
-          background: rgba(255, 255, 255, 0.9); /* White glass background */
-          backdrop-filter: blur(10px); /* Liquid glass effect */
-          -webkit-backdrop-filter: blur(10px);
+          padding: 10px 30px; /* Reduced padding for smaller size */
+          background: ${isScrolled ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.85)'}; /* Dynamic transparency */
+          backdrop-filter: blur(15px); /* Increased blur for more liquid effect */
+          -webkit-backdrop-filter: blur(15px);
           border-radius: 50px; /* Pill shape */
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Subtle drop shadow */
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Refined subtle drop shadow */
+          border: 1px solid rgba(255, 255, 255, 0.2); /* Very subtle light border */
           position: fixed; /* Fixed for floating */
           top: 20px; /* Distance from top */
           left: 50%; /* Start from center */
           transform: translateX(-50%); /* Pull back by half its width to truly center */
           z-index: 1000;
-          max-width: 700px; /* Max width for the pill */
+          max-width: 550px; /* Reduced max width for a smaller pill */
           width: 90%; /* Responsive width */
           box-sizing: border-box;
-          transition: all 0.3s ease;
+          transition: all 0.3s ease; /* Smooth transition for transparency */
         }
         .nav-menu {
           display: flex;
           align-items: center;
           list-style: none;
-          gap: 40px; /* Evenly spaced sections */
+          gap: 30px; /* Adjusted gap for smaller size */
           margin: 0;
           padding: 0;
           width: 100%; /* Take full width of navbar for spacing */
@@ -98,28 +116,19 @@ const Navbar = () => {
         .anchor-link {
           text-decoration: none;
           color: #212121; /* Black text for high contrast */
-          font-size: 17px;
+          font-size: 16px; /* Slightly smaller font size */
           font-weight: 600; /* Slightly bolder for impact */
           position: relative;
-          padding-bottom: 5px;
+          padding-bottom: 0; /* Remove padding for underline */
           transition: color 0.3s ease;
           white-space: nowrap; /* Prevent text wrapping */
         }
         .anchor-link::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background-color: #00e6e6; /* Vibrant accent color */
-          transition: width 0.3s ease;
+          /* Removed underline effect */
+          display: none;
         }
         .anchor-link:hover {
-          color: #00e6e6; /* Vibrant accent on hover */
-        }
-        .anchor-link:hover::after {
-          width: 100%;
+          color: #66b2b2; /* Muted teal on hover */
         }
         /* Mobile Menu Buttons */
         .nav-mob-open,
@@ -135,7 +144,7 @@ const Navbar = () => {
         /* Mobile Styles */
         @media (max-width: 768px) {
           .navbar {
-            padding: 15px 25px; /* Adjusted padding for mobile */
+            padding: 10px 20px; /* Adjusted padding for mobile */
             border-radius: 10px; /* Less rounded for mobile */
             top: 15px; /* Closer to top on mobile */
             width: calc(100% - 30px); /* Full width with padding */
@@ -177,10 +186,7 @@ const Navbar = () => {
             color: #212121; /* Darker text for mobile menu links */
           }
           .anchor-link:hover {
-            color: #00e6e6; /* Vibrant accent on hover */
-          }
-          .anchor-link::after {
-            background-color: #00e6e6; /* Vibrant accent underline */
+            color: #66b2b2; /* Muted teal on hover */
           }
           .nav-mob-close {
             display: block;
@@ -192,7 +198,7 @@ const Navbar = () => {
         }
         @media (max-width: 480px) {
           .navbar {
-            padding: 10px 20px;
+            padding: 8px 15px;
           }
           .nav-menu {
             width: 240px;
