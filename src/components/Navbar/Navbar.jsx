@@ -10,10 +10,12 @@ const Navbar = () => {
 
   const openMenu = () => {
     setIsMenuOpen(true)
+    document.body.style.overflow = "hidden" // Prevent scrolling when menu is open
   }
 
   const closeMenu = () => {
     setIsMenuOpen(false)
+    document.body.style.overflow = "" // Re-enable scrolling
   }
 
   // Effect to handle scroll transparency
@@ -28,6 +30,14 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll)
     return () => {
       window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  // Close menu on route change (if using a router like Next.js router)
+  // Or simply ensure body scroll is re-enabled if component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "" // Clean up on unmount
     }
   }, [])
 
@@ -159,27 +169,28 @@ const Navbar = () => {
           .nav-menu {
             position: fixed;
             top: 0;
-            width: 80vw; /* Use viewport width for flexibility */
+            right: -100vw; /* Start completely off-screen */
+            width: 100vw; /* Full viewport width */
             max-width: 320px; /* Cap the max width for tablets */
-            height: 100%;
+            height: 100vh; /* Full viewport height */
             background: rgba(255, 255, 255, 0.98); /* More opaque white for mobile menu */
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
-            align-items: flex-start;
-            gap: 25px;
-            padding: 60px 25px;
+            align-items: flex-start; /* Align items to the left */
+            gap: 30px; /* Increased gap for better spacing */
+            padding: 80px 30px; /* More generous padding */
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-            transition: right 0.5s ease;
+            transition: right 0.5s ease-in-out; /* Smoother transition */
             z-index: 1001;
-            right: -80vw; /* Match width for closed position */
             justify-content: flex-start; /* Align items to top in column */
+            box-sizing: border-box; /* Include padding in width/height */
           }
           .nav-menu.nav-menu-open {
             right: 0; /* Slide in when open */
           }
           .nav-menu li {
-            font-size: 18px; /* Slightly smaller font for mobile menu */
+            font-size: 20px; /* Larger font for mobile menu */
             padding-left: 0;
             width: 100%;
           }
@@ -194,10 +205,10 @@ const Navbar = () => {
           .nav-mob-close {
             display: block;
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px; /* Adjusted position */
+            right: 20px; /* Adjusted position */
             color: #212121; /* Dark color for close icon */
-            font-size: 28px; /* Slightly smaller icon */
+            font-size: 30px; /* Larger icon */
           }
         }
 
@@ -205,35 +216,31 @@ const Navbar = () => {
           .navbar {
             padding: 8px 15px;
             width: calc(100% - 20px);
-            top: 10px; /* Closer to top on smaller screens */
+            top: 10px;
           }
           .nav-mob-open {
             left: 15px;
-            font-size: 26px; /* Even smaller icon */
+            font-size: 26px;
           }
           .nav-menu {
-            width: 90vw; /* Even wider percentage for very small screens */
-            max-width: 280px; /* Cap max width for very small screens */
-            right: -90vw; /* Match width for closed position */
-            padding: 50px 20px;
-          }
-          .nav-menu.nav-menu-open {
-            right: 0;
+            max-width: 280px; /* Slightly smaller max-width for very small phones */
+            padding: 60px 25px; /* Adjusted padding */
+            gap: 25px; /* Adjusted gap */
           }
           .nav-menu li {
-            font-size: 16px; /* Smaller font for very small screens */
+            font-size: 18px;
           }
           .nav-mob-close {
-            top: 10px;
-            right: 10px;
-            font-size: 26px; /* Even smaller icon */
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
           }
         }
 
         @media (max-width: 375px) { /* Specific for very small phones like iPhone SE */
           .navbar {
             padding: 6px 10px;
-            width: calc(100% - 16px); /* Even tighter width */
+            width: calc(100% - 16px);
             top: 8px;
           }
           .nav-mob-open {
@@ -241,21 +248,17 @@ const Navbar = () => {
             font-size: 24px;
           }
           .nav-menu {
-            width: 95vw; /* Maximize width for tiny screens */
-            max-width: 260px; /* Cap it */
-            right: -95vw;
-            padding: 40px 15px;
-          }
-          .nav-menu.nav-menu-open {
-            right: 0;
+            max-width: 240px; /* Even smaller max-width */
+            padding: 50px 20px;
+            gap: 20px;
           }
           .nav-menu li {
-            font-size: 15px;
+            font-size: 16px;
           }
           .nav-mob-close {
-            top: 8px;
-            right: 8px;
-            font-size: 24px;
+            top: 10px;
+            right: 10px;
+            font-size: 26px;
           }
         }
       `}</style>
