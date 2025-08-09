@@ -1,11 +1,12 @@
 "use client"
-import { useState, useEffect } from "react" // Import useEffect
+
+import { useState, useEffect } from "react"
 import { Link as ScrollLink } from "react-scroll"
-import { FaBars, FaTimes } from "react-icons/fa" // Import icons
+import { Menu, X } from "lucide-react" // Import Lucide React icons
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false) // New state for scroll transparency
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const openMenu = () => {
     setIsMenuOpen(true)
@@ -18,13 +19,12 @@ const Navbar = () => {
   // Effect to handle scroll transparency
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) { // Adjust scroll threshold as needed
+      if (window.scrollY > 50) {
         setIsScrolled(true)
       } else {
         setIsScrolled(false)
       }
     }
-
     window.addEventListener("scroll", handleScroll)
     return () => {
       window.removeEventListener("scroll", handleScroll)
@@ -34,18 +34,18 @@ const Navbar = () => {
   return (
     <div className="navbar">
       {/* Mobile menu open icon */}
-      <FaBars onClick={openMenu} className="nav-mob-open" aria-label="Open navigation menu" />
+      <Menu onClick={openMenu} className="nav-mob-open" aria-label="Open navigation menu" />
       <ul className={`nav-menu ${isMenuOpen ? "nav-menu-open" : ""}`}>
         {/* Mobile menu close icon */}
-        <FaTimes onClick={closeMenu} className="nav-mob-close" aria-label="Close navigation menu" />
+        <X onClick={closeMenu} className="nav-mob-close" aria-label="Close navigation menu" />
         <li>
           <ScrollLink className="anchor-link" to="home" smooth={true} duration={500} offset={-50} onClick={closeMenu}>
-            <p>Home</p>
+            Home
           </ScrollLink>
         </li>
         <li>
           <ScrollLink className="anchor-link" to="about" smooth={true} duration={500} offset={-50} onClick={closeMenu}>
-            <p>About Me</p>
+            About Me
           </ScrollLink>
         </li>
         <li>
@@ -57,12 +57,12 @@ const Navbar = () => {
             offset={-50}
             onClick={closeMenu}
           >
-            <p>Services</p>
+            Services
           </ScrollLink>
         </li>
         <li>
           <ScrollLink className="anchor-link" to="work" smooth={true} duration={500} offset={-50} onClick={closeMenu}>
-            <p>Portfolio</p>
+            Portfolio
           </ScrollLink>
         </li>
         <li>
@@ -74,7 +74,7 @@ const Navbar = () => {
             offset={-50}
             onClick={closeMenu}
           >
-            <p>Contact</p>
+            Contact
           </ScrollLink>
         </li>
       </ul>
@@ -84,7 +84,7 @@ const Navbar = () => {
           align-items: center;
           justify-content: center; /* Center content horizontally */
           padding: 10px 30px; /* Reduced padding for smaller size */
-          background: ${isScrolled ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.85)'}; /* Dynamic transparency */
+          background: ${isScrolled ? "rgba(255, 255, 255, 0.2)" : "rgba(255, 255, 255, 0.85)"}; /* Dynamic transparency */
           backdrop-filter: blur(15px); /* Increased blur for more liquid effect */
           -webkit-backdrop-filter: blur(15px);
           border-radius: 50px; /* Pill shape */
@@ -137,7 +137,7 @@ const Navbar = () => {
           cursor: pointer;
           background: none;
           border: none;
-          font-size: 30px;
+          font-size: 30px; /* Icon size */
           color: #212121; /* Black color for icons on white background */
           padding: 5px;
         }
@@ -148,16 +148,19 @@ const Navbar = () => {
             border-radius: 10px; /* Less rounded for mobile */
             top: 15px; /* Closer to top on mobile */
             width: calc(100% - 30px); /* Full width with padding */
+            max-width: none; /* Remove max-width constraint on mobile */
           }
           .nav-mob-open {
             display: block; /* Show open icon on mobile */
             position: absolute; /* Position relative to navbar */
             left: 20px; /* Align to left */
+            font-size: 28px; /* Slightly smaller icon */
           }
           .nav-menu {
             position: fixed;
             top: 0;
-            width: 280px; /* Mobile menu width */
+            width: 80vw; /* Use viewport width for flexibility */
+            max-width: 320px; /* Cap the max width for tablets */
             height: 100%;
             background: rgba(255, 255, 255, 0.98); /* More opaque white for mobile menu */
             backdrop-filter: blur(15px);
@@ -169,14 +172,14 @@ const Navbar = () => {
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
             transition: right 0.5s ease;
             z-index: 1001;
-            right: -280px; /* Explicitly set closed position, matching width */
+            right: -80vw; /* Match width for closed position */
             justify-content: flex-start; /* Align items to top in column */
           }
           .nav-menu.nav-menu-open {
             right: 0; /* Slide in when open */
           }
           .nav-menu li {
-            font-size: 20px;
+            font-size: 18px; /* Slightly smaller font for mobile menu */
             padding-left: 0;
             width: 100%;
           }
@@ -194,15 +197,65 @@ const Navbar = () => {
             top: 15px;
             right: 15px;
             color: #212121; /* Dark color for close icon */
+            font-size: 28px; /* Slightly smaller icon */
           }
         }
+
         @media (max-width: 480px) {
           .navbar {
             padding: 8px 15px;
+            width: calc(100% - 20px);
+            top: 10px; /* Closer to top on smaller screens */
+          }
+          .nav-mob-open {
+            left: 15px;
+            font-size: 26px; /* Even smaller icon */
           }
           .nav-menu {
-            width: 240px;
-            right: -240px;
+            width: 90vw; /* Even wider percentage for very small screens */
+            max-width: 280px; /* Cap max width for very small screens */
+            right: -90vw; /* Match width for closed position */
+            padding: 50px 20px;
+          }
+          .nav-menu.nav-menu-open {
+            right: 0;
+          }
+          .nav-menu li {
+            font-size: 16px; /* Smaller font for very small screens */
+          }
+          .nav-mob-close {
+            top: 10px;
+            right: 10px;
+            font-size: 26px; /* Even smaller icon */
+          }
+        }
+
+        @media (max-width: 375px) { /* Specific for very small phones like iPhone SE */
+          .navbar {
+            padding: 6px 10px;
+            width: calc(100% - 16px); /* Even tighter width */
+            top: 8px;
+          }
+          .nav-mob-open {
+            left: 10px;
+            font-size: 24px;
+          }
+          .nav-menu {
+            width: 95vw; /* Maximize width for tiny screens */
+            max-width: 260px; /* Cap it */
+            right: -95vw;
+            padding: 40px 15px;
+          }
+          .nav-menu.nav-menu-open {
+            right: 0;
+          }
+          .nav-menu li {
+            font-size: 15px;
+          }
+          .nav-mob-close {
+            top: 8px;
+            right: 8px;
+            font-size: 24px;
           }
         }
       `}</style>
