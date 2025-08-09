@@ -1,9 +1,10 @@
 "use client"
+
 import { Link as ScrollLink } from "react-scroll"
-import { FaLinkedin, FaFacebook, FaInstagram, FaGithub, FaTwitter } from "react-icons/fa"
+import { Linkedin, Facebook, Instagram, Github, Twitter } from "lucide-react" // Import Lucide React icons
 
 // Reference your profile image directly from the public folder
-// Make sure your image is located at public/profile_img.png
+// Make sure your image is located at public/profile_img.jpg
 const profile_photo_url = "/profile_img.jpg"
 
 const Hero = () => {
@@ -35,10 +36,10 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
                 >
-                  <FaLinkedin />
+                  <Linkedin />
                 </a>
                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <FaTwitter />
+                  <Twitter />
                 </a>
                 <a
                   href="https://www.facebook.com/share/1YfSjfV2Tu/"
@@ -46,7 +47,7 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   aria-label="Facebook"
                 >
-                  <FaFacebook />
+                  <Facebook />
                 </a>
                 <a
                   href="https://www.instagram.com/invites/contact/?igsh=1vbja1sbj1gxj&utm_content=1ub3bq1"
@@ -54,7 +55,7 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   aria-label="Instagram"
                 >
-                  <FaInstagram />
+                  <Instagram />
                 </a>
                 <a
                   href="https://github.com/geethsenaviratne"
@@ -62,7 +63,7 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   aria-label="GitHub"
                 >
-                  <FaGithub />
+                  <Github />
                 </a>
               </div>
             </div>
@@ -88,17 +89,28 @@ const Hero = () => {
           background-color: white; /* Changed to white background */
           color: #333; /* Default text color for white background */
         }
-
         /* Subtle grid pattern for nostalgic tech feel on white background */
         .hero::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background-image: linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%),
-                            linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%);
+          background-image: linear-gradient(
+              0deg,
+              transparent 24%,
+              rgba(0, 0, 0, 0.03) 25%,
+              rgba(0, 0, 0, 0.03) 26%,
+              transparent 27%
+            ),
+            linear-gradient(
+              90deg,
+              transparent 24%,
+              rgba(0, 0, 0, 0.03) 25%,
+              rgba(0, 0, 0, 0.03) 26%,
+              transparent 27%
+            );
           background-size: 50px 50px;
           pointer-events: none;
           z-index: 0;
@@ -122,9 +134,9 @@ const Hero = () => {
         }
         .hero-content-wrapper {
           display: flex;
-          flex-direction: column; /* Stack on small screens */
+          flex-direction: column; /* Stack on small screens by default */
           align-items: center;
-          gap: 80px; /* Increased gap for more whitespace */
+          gap: 60px; /* Adjusted gap for more whitespace */
           width: 100%;
         }
         .hero-text-container {
@@ -226,10 +238,10 @@ const Hero = () => {
           flex-wrap: wrap;
           align-items: center;
           justify-content: center;
-          gap: 25px;
+          gap: 20px; /* Adjusted gap */
           font-size: 18px;
           font-weight: 500;
-          margin-top: 50px;
+          margin-top: 40px; /* Adjusted margin */
           animation: fadeInUp 1s ease-out 4s both;
         }
         .hero-connect {
@@ -260,7 +272,7 @@ const Hero = () => {
           box-shadow: 0 6px 15px rgba(102, 178, 178, 0.4);
         }
         .social-container {
-          margin-top: 70px;
+          margin-top: 60px; /* Adjusted margin */
           animation: fadeInUp 1s ease-out 4.5s both;
           width: 100%;
         }
@@ -298,6 +310,7 @@ const Hero = () => {
         .social-icons a:active {
           transform: scale(0.95);
         }
+
         /* Responsive adjustments */
         @media (min-width: 769px) {
           .glass-card {
@@ -307,11 +320,12 @@ const Hero = () => {
             flex-direction: row; /* Side-by-side on larger screens */
             justify-content: space-around;
             align-items: center;
+            gap: 80px; /* Increased gap for desktop */
           }
           .hero-text-container {
             align-items: flex-start;
             text-align: left;
-            margin-right: 80px;
+            margin-right: 0; /* Reset margin */
           }
           .hero h1,
           .hero p,
@@ -326,6 +340,7 @@ const Hero = () => {
             justify-content: flex-start;
           }
         }
+
         @media (max-width: 768px) {
           .glass-card {
             padding: 40px 20px; /* Less padding on small screens */
@@ -342,7 +357,7 @@ const Hero = () => {
           }
           .hero p {
             font-size: 16px;
-            width: 90%;
+            width: 90%; /* Adjust width for better line length */
           }
           .hero-action {
             flex-direction: column;
@@ -351,8 +366,8 @@ const Hero = () => {
           }
           .hero-connect,
           .hero-resume {
-            width: 80%;
-            max-width: 280px;
+            width: 90%; /* Make buttons take more width */
+            max-width: 300px; /* Cap their max width */
             text-align: center;
             padding: 14px 20px;
           }
@@ -364,6 +379,98 @@ const Hero = () => {
             font-size: 20px;
             width: 40px;
             height: 40px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero {
+            padding: 30px 15px; /* Reduced overall padding */
+          }
+          .glass-card {
+            padding: 30px 15px; /* Even less padding */
+          }
+          .profile-photo {
+            width: 150px; /* Smaller photo */
+            height: 150px;
+          }
+          .hello-animation {
+            font-size: 38px;
+          }
+          .hero h1 {
+            font-size: 32px;
+          }
+          .hero p {
+            font-size: 15px;
+            width: 95%; /* Slightly wider for very small screens */
+          }
+          .hero-action {
+            gap: 10px; /* Smaller gap between buttons */
+          }
+          .hero-connect,
+          .hero-resume {
+            width: 95%; /* Maximize button width */
+            max-width: 260px; /* Cap for very small screens */
+            padding: 12px 15px;
+          }
+          .social-container {
+            margin-top: 40px; /* Reduced margin */
+          }
+          .social-container h4 {
+            font-size: 18px;
+          }
+          .social-icons {
+            gap: 15px; /* Smaller gap between icons */
+          }
+          .social-icons a {
+            font-size: 18px;
+            width: 36px;
+            height: 36px;
+          }
+        }
+
+        @media (max-width: 375px) {
+          .hero {
+            padding: 20px 10px;
+          }
+          .glass-card {
+            padding: 25px 10px;
+          }
+          .profile-photo {
+            width: 120px;
+            height: 120px;
+          }
+          .hello-animation {
+            font-size: 32px;
+          }
+          .hero h1 {
+            font-size: 28px;
+          }
+          .hero p {
+            font-size: 14px;
+            width: 98%;
+          }
+          .hero-action {
+            gap: 8px;
+          }
+          .hero-connect,
+          .hero-resume {
+            width: 98%;
+            max-width: 240px;
+            padding: 10px 12px;
+          }
+          .social-container {
+            margin-top: 30px;
+          }
+          .social-container h4 {
+            font-size: 16px;
+          }
+          .social-icons {
+            gap: 10px;
+          }
+          .social-icons a {
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
           }
         }
       `}</style>
