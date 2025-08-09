@@ -1,7 +1,6 @@
 "use client"
-
 // Reference your profile image directly from the public folder
-// Make sure your image is located at public/profile_img.jpg
+// Make sure your image is located at public/profile_img.png
 const profile_photo_url = "/profile_img.jpg"
 
 const About = () => {
@@ -11,14 +10,12 @@ const About = () => {
         <h1>About me</h1>
         <div className="underline"></div>
       </div>
-
       {/* Section Container */}
       <div className="about-section">
         {/* Right Side Image */}
         <div className="about-left">
           <img src={profile_photo_url || "/placeholder.svg"} alt="Profile" className="profile-image" />
         </div>
-
         {/* Left Side Content */}
         <div className="about-right">
           <div className="about-para">
@@ -62,7 +59,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
       {/* Achievements Section */}
       <div className="about-achievements">
         <div className="about-achievement">
@@ -82,7 +78,6 @@ const About = () => {
           <p>HAPPY CLIENTS</p>
         </div>
       </div>
-
       <style jsx>{`
         .about {
           display: flex;
@@ -93,56 +88,69 @@ const About = () => {
           margin: 80px auto; /* Centered with auto margins */
           max-width: 1200px; /* Max width for content */
           padding: 0 20px; /* Horizontal padding */
-          color: #212121; /* Deep charcoal for default text */
+          background-color: white; /* White background to match Hero */
+          color: #333; /* Default text color for white background */
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* Subtle grid pattern for nostalgic tech feel on white background */
+        .about::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%),
+                            linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%);
+          background-size: 50px 50px;
+          pointer-events: none;
+          z-index: 0;
         }
 
         .about-title {
           position: relative;
           text-align: center;
+          z-index: 1; /* Ensure title is above pattern */
         }
-
         .about-title h1 {
           font-size: 65px; /* Adjusted font size */
           font-weight: 700;
           color: #212121; /* Deep charcoal */
           margin-bottom: 15px;
         }
-
         .underline {
           width: 150px; /* Shorter underline */
           height: 4px; /* Thinner underline */
-          background-color: #a8dadc; /* Soft blue accent */
+          background-color: #66b2b2; /* Muted teal accent to match Hero */
           border-radius: 2px;
           margin: 0 auto;
         }
-
         .about-section {
           display: flex;
           gap: 80px; /* Generous gap between image and text */
           align-items: flex-start; /* Align items to the top */
           width: 100%;
+          z-index: 1; /* Ensure section content is above pattern */
         }
-
         .about-left {
           flex-shrink: 0; /* Prevent image from shrinking */
         }
-
         .profile-image {
           width: 320px; /* Slightly smaller for elegance */
           height: 320px;
           object-fit: cover;
           border-radius: 10px; /* Slightly rounded corners */
-          border: 3px solid #a8dadc; /* Soft blue border */
-          box-shadow: 0 10px 30px rgba(69, 123, 157, 0.15); /* Soft glow */
+          border: 3px solid #66b2b2; /* Muted teal border to match Hero */
+          box-shadow: 0 10px 30px rgba(102, 178, 178, 0.3); /* Soft glow to match Hero */
         }
-
         .about-right {
           display: flex;
           flex-direction: column;
           gap: 60px; /* Gap between paragraphs and skills */
           flex-grow: 1; /* Allow text content to grow */
         }
-
         .about-para {
           display: flex;
           flex-direction: column;
@@ -150,42 +158,36 @@ const About = () => {
           font-size: 19px; /* Adjusted font size */
           font-weight: 400; /* Lighter weight for body text */
           line-height: 1.8; /* Improved line height for readability */
-          color: #495057; /* Medium dark gray */
+          color: #495057; /* Medium dark gray to match Hero */
         }
-
         .about-skills {
           display: flex;
           flex-direction: column;
           gap: 25px; /* Increased gap between skills */
         }
-
         .about-skill {
           display: flex;
           gap: 30px; /* Adjusted gap between text and bar */
           align-items: center;
           transition: transform 0.3s ease;
         }
-
         .about-skill p {
           min-width: 120px; /* Ensure text doesn't wrap too much */
           font-size: 20px; /* Adjusted font size */
           font-weight: 500;
-          color: #212121; /* Deep charcoal */
+          color: #212121; /* Deep charcoal to match Hero */
         }
-
         .about-skill hr {
           outline: none;
           border: none;
           height: 6px; /* Thinner bar */
           border-radius: 3px;
-          background-color: #a8dadc; /* Soft blue for skill bars */
+          background-color: #66b2b2; /* Muted teal for skill bars to match Hero */
           flex-grow: 1; /* Allow bar to take remaining space */
         }
-
         .about-skill:hover {
           transform: translateX(10px); /* Subtle slide effect */
         }
-
         .about-achievements {
           display: flex;
           width: 100%;
@@ -193,8 +195,8 @@ const About = () => {
           margin-bottom: 80px;
           flex-wrap: wrap; /* Allow wrapping on smaller screens */
           gap: 40px; /* Gap between achievements */
+          z-index: 1; /* Ensure achievements are above pattern */
         }
-
         .about-achievement {
           display: flex;
           flex-direction: column;
@@ -203,31 +205,26 @@ const About = () => {
           transition: transform 0.4s ease;
           text-align: center;
         }
-
         .about-achievement h1 {
           font-size: 55px; /* Adjusted font size */
           font-weight: 700;
-          color: #457b9d; /* Muted blue for numbers */
+          color: #66b2b2; /* Muted teal for numbers to match Hero */
         }
-
         .about-achievement p {
           font-size: 18px; /* Adjusted font size */
           font-weight: 500;
-          color: #495057; /* Medium dark gray */
+          color: #495057; /* Medium dark gray to match Hero */
           line-height: 1.4;
         }
-
         .about-achievement:hover {
           transform: translateY(-10px); /* Lift effect */
         }
-
         .vertical-line {
           height: 100px; /* Shorter line */
           width: 1px; /* Thinner line */
           background-color: #ced4da; /* Light gray for separator */
           margin: 0 20px;
         }
-
         /* Media Queries for Responsiveness */
         @media (max-width: 1024px) {
           .about {
@@ -261,7 +258,6 @@ const About = () => {
             font-size: 16px;
           }
         }
-
         @media (max-width: 768px) {
           .about {
             gap: 60px;
