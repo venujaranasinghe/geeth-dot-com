@@ -1,26 +1,21 @@
 "use client"
 
 // Reference your profile image directly from the public folder
-// Make sure your image is located at public/profile_img.png
+// Make sure your image is located at public/profile_img.jpg
 const profile_photo_url = "/profile_img.jpg"
 
 const About = () => {
   return (
     <div id="about" className="about">
       <div className="about-inner-content">
-        {" "}
-        {/* New wrapper for content */}
         <div className="about-title">
           <h1 className="animated-title">About me</h1>
           <div className="underline animated-underline"></div>
         </div>
-        {/* Section Container */}
         <div className="about-section">
-          {/* Right Side Image */}
           <div className="about-left">
             <img src={profile_photo_url || "/placeholder.svg"} alt="Profile" className="profile-image animated-image" />
           </div>
-          {/* Left Side Content */}
           <div className="about-right">
             <div className="about-para">
               <p className="animated-para">
@@ -67,7 +62,6 @@ const About = () => {
             </div>
           </div>
         </div>
-        {/* Achievements Section */}
         <div className="about-achievements">
           <div className="achievement-card animated-achievement" style={{ animationDelay: "1.8s" }}>
             <div className="about-achievement">
@@ -75,7 +69,6 @@ const About = () => {
               <p>YEAR OF EXPERIENCE</p>
             </div>
           </div>
-          {/* Vertical line */}
           <div className="vertical-line"></div>
           <div className="achievement-card animated-achievement" style={{ animationDelay: "2.1s" }}>
             <div className="about-achievement">
@@ -83,7 +76,6 @@ const About = () => {
               <p>PROJECTS COMPLETED</p>
             </div>
           </div>
-          {/* Vertical line */}
           <div className="vertical-line"></div>
           <div className="achievement-card animated-achievement" style={{ animationDelay: "2.4s" }}>
             <div className="about-achievement">
@@ -92,8 +84,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>{" "}
-      {/* End of about-inner-content */}
+      </div>
       <style jsx>{`
         .about {
           display: flex;
@@ -101,11 +92,12 @@ const About = () => {
           align-items: center;
           justify-content: center;
           padding: 80px 0; /* Vertical padding for the section */
-          background-color: white; /* White background to match Hero */
+          background-color: white; /* White background to match Hero/About */
           color: #333; /* Default text color for white background */
           position: relative;
-          overflow: hidden;
+          overflow-x: hidden; /* Prevent horizontal scrolling */
           width: 100%; /* Ensure it takes full width */
+          box-sizing: border-box; /* Include padding in width calculation */
         }
         /* Subtle grid pattern for nostalgic tech feel on white background */
         .about::before {
@@ -134,8 +126,32 @@ const About = () => {
           z-index: 0;
           animation: backgroundPan 60s linear infinite; /* Slow pan animation */
         }
+
+        /* Reduce background animation on mobile for better performance */
+        @media (max-width: 768px) {
+          .about::before {
+            animation: none; /* Disable animation on mobile for better performance */
+            background-size: 30px 30px; /* Smaller pattern for mobile */
+          }
+          
+          /* Reduce motion for users who prefer it */
+          @media (prefers-reduced-motion: reduce) {
+            .animated-title,
+            .animated-underline,
+            .animated-image,
+            .animated-para,
+            .animated-skill,
+            .animated-achievement {
+              animation: none;
+              opacity: 1;
+            }
+            
+            .about::before {
+              animation: none;
+            }
+          }
+        }
         .about-inner-content {
-          /* New wrapper for content */
           max-width: 1200px; /* Max width for content */
           margin: 0 auto; /* Center content */
           padding: 0 20px; /* Horizontal padding for content */
@@ -146,6 +162,7 @@ const About = () => {
           gap: 100px; /* Gap between main sections within the content wrapper */
           position: relative; /* For z-index to work */
           z-index: 1; /* Ensure content is above pattern */
+          box-sizing: border-box; /* Include padding in width calculation */
         }
         .about-title {
           position: relative;
@@ -188,6 +205,47 @@ const About = () => {
         .animated-achievement {
           opacity: 0;
           animation: fadeInUp 0.8s ease-out forwards; /* Staggered delay applied inline */
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideInFromLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes backgroundPan {
+          0% {
+            background-position: 0px 0px;
+          }
+          100% {
+            background-position: 50px 50px;
+          }
         }
         .about-section {
           display: flex;
@@ -256,6 +314,22 @@ const About = () => {
         .about-skill:hover {
           transform: translateX(10px); /* Subtle slide effect */
         }
+
+        /* Touch device improvements */
+        @media (hover: none) and (pointer: coarse) {
+          .about-skill:hover {
+            transform: none; /* Disable hover effect on touch devices */
+          }
+          .achievement-card:hover {
+            transform: none; /* Disable hover effect on touch devices */
+          }
+          .about-skill {
+            padding: 8px 0; /* Add padding for better touch targets */
+          }
+          .achievement-card {
+            transition: none; /* Remove transition on touch devices for better performance */
+          }
+        }
         .about-achievements {
           display: flex;
           width: 100%;
@@ -307,12 +381,30 @@ const About = () => {
           margin: 0 20px;
         }
         /* Media Queries for Responsiveness */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .about-inner-content {
-            gap: 80px;
+            gap: 70px;
+            padding: 0 40px;
           }
           .about-title h1 {
-            font-size: 55px;
+            font-size: 58px;
+          }
+          .about-section {
+            gap: 60px;
+          }
+          .profile-image {
+            width: 300px;
+            height: 300px;
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .about-inner-content {
+            gap: 60px;
+            padding: 0 30px;
+          }
+          .about-title h1 {
+            font-size: 52px;
           }
           .about-section {
             gap: 50px;
@@ -328,11 +420,17 @@ const About = () => {
           .about-skill p {
             font-size: 18px;
           }
+          .about-skills {
+            gap: 20px;
+          }
           .about-achievements {
             gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
           }
           .achievement-card {
-            max-width: 45%; /* Adjust for 2 columns on medium screens */
+            max-width: 45%;
+            min-width: 280px;
           }
           .about-achievement h1 {
             font-size: 45px;
@@ -343,147 +441,268 @@ const About = () => {
         }
         @media (max-width: 768px) {
           .about {
-            padding: 60px 0; /* Adjust vertical padding for mobile */
+            padding: 60px 0;
+            margin: 0 10px; /* Add margin to prevent content from being cut off */
           }
           .about-inner-content {
             gap: 50px;
-            padding: 0 20px;
+            padding: 0 30px;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
           }
           .about-title h1 {
-            font-size: 48px;
+            font-size: 42px;
+            text-align: center;
           }
           .underline {
-            width: 120px;
+            width: 100px;
           }
           .about-section {
-            flex-direction: column; /* Stack on mobile */
+            flex-direction: column;
             align-items: center;
             gap: 30px;
           }
           .about-left {
-            display: none; /* Hide image on mobile as per original */
+            display: none; /* Hide image on mobile */
           }
           .about-right {
             gap: 40px;
             width: 100%;
           }
           .about-para {
-            font-size: 17px;
-            line-height: 1.7;
-            text-align: center; /* Center text on mobile */
-            gap: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center;
+            gap: 20px;
+            width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
           }
           .about-skills {
-            align-items: center; /* Center skills block on mobile */
-            gap: 15px;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
           }
           .about-skill {
-            flex-direction: column; /* Stack skill text and bar */
-            gap: 10px;
-            width: 90%; /* Constrain width */
-            align-items: flex-start; /* Align text to left within skill */
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            align-items: flex-start;
+            text-align: left;
+            padding: 10px 0;
           }
           .about-skill p {
-            min-width: unset; /* Remove min-width */
-            width: 100%; /* Full width for text */
+            min-width: unset;
+            width: 100%;
             text-align: left;
-            font-size: 17px;
+            font-size: 16px;
+            margin-bottom: 5px;
           }
           .skill-bar-container {
-            width: 100%; /* Full width for bar container */
+            width: 100%;
+            height: 10px;
+            margin-right: 5px; /* Add small right margin to prevent cutoff */
           }
           .about-achievements {
-            flex-direction: column; /* Stack achievements on mobile */
-            gap: 20px;
+            flex-direction: column;
+            gap: 25px;
             margin-bottom: 40px;
+            align-items: center;
           }
           .achievement-card {
-            max-width: 90%; /* Full width for cards on mobile */
-            padding: 20px 30px;
+            max-width: 85%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 35px;
+            min-width: unset;
           }
           .vertical-line {
-            display: none; /* Hide vertical lines on mobile */
+            display: none;
           }
           .about-achievement h1 {
-            font-size: 40px;
+            font-size: 36px;
           }
           .about-achievement p {
-            font-size: 15px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.4;
           }
         }
 
         @media (max-width: 480px) {
           .about {
-            padding: 40px 0;
+            padding: 50px 0;
+            margin: 0 8px; /* Add margin to prevent content from being cut off */
           }
           .about-inner-content {
             gap: 40px;
-            padding: 0 15px;
+            padding: 0 24px;
+            box-sizing: border-box;
           }
           .about-title h1 {
-            font-size: 38px;
+            font-size: 32px;
           }
           .underline {
             width: 80px;
+            height: 3px;
           }
           .about-section {
             gap: 25px;
           }
+          .about-right {
+            gap: 35px;
+          }
           .about-para {
             font-size: 15px;
-            gap: 10px;
+            gap: 18px;
+            line-height: 1.5;
+            padding: 0 12px;
+            box-sizing: border-box;
           }
           .about-skills {
-            gap: 10px;
+            gap: 22px;
+            padding: 0 12px;
+            box-sizing: border-box;
+          }
+          .about-skill {
+            gap: 12px;
+            padding: 8px 0;
           }
           .about-skill p {
             font-size: 15px;
           }
+          .skill-bar-container {
+            height: 8px;
+            margin-right: 3px; /* Add small right margin */
+          }
           .achievement-card {
-            padding: 18px 25px;
+            padding: 25px 30px;
+            max-width: 90%;
           }
           .about-achievements {
-            gap: 15px;
-          }
-          .about-achievement h1 {
-            font-size: 32px;
-          }
-          .about-achievement p {
-            font-size: 14px;
-          }
-        }
-
-        @media (max-width: 375px) {
-          .about {
-            padding: 30px 0;
-          }
-          .about-inner-content {
-            gap: 30px;
-            padding: 0 10px;
-          }
-          .about-title h1 {
-            font-size: 30px;
-          }
-          .underline {
-            width: 60px;
-          }
-          .about-section {
-            gap: 20px;
-          }
-          .about-para {
-            font-size: 14px;
-          }
-          .about-skill p {
-            font-size: 14px;
-          }
-          .achievement-card {
-            padding: 15px 20px;
+            gap: 25px;
+            margin-bottom: 35px;
           }
           .about-achievement h1 {
             font-size: 28px;
           }
           .about-achievement p {
             font-size: 13px;
+            line-height: 1.3;
+          }
+        }
+
+        @media (max-width: 375px) {
+          .about {
+            padding: 40px 0;
+            margin: 0 6px; /* Add margin to prevent content from being cut off */
+          }
+          .about-inner-content {
+            gap: 35px;
+            padding: 0 20px;
+            box-sizing: border-box;
+          }
+          .about-title h1 {
+            font-size: 28px;
+          }
+          .underline {
+            width: 60px;
+            height: 3px;
+          }
+          .about-section {
+            gap: 20px;
+          }
+          .about-right {
+            gap: 30px;
+          }
+          .about-para {
+            font-size: 14px;
+            gap: 15px;
+            line-height: 1.4;
+            padding: 0 10px;
+            box-sizing: border-box;
+          }
+          .about-skills {
+            gap: 18px;
+            padding: 0 10px;
+            box-sizing: border-box;
+          }
+          .about-skill {
+            gap: 10px;
+            padding: 6px 0;
+          }
+          .about-skill p {
+            font-size: 14px;
+          }
+          .skill-bar-container {
+            height: 6px;
+            margin-right: 2px; /* Add small right margin */
+          }
+          .achievement-card {
+            padding: 22px 25px;
+            max-width: 95%;
+          }
+          .about-achievements {
+            gap: 22px;
+            margin-bottom: 30px;
+          }
+          .about-achievement h1 {
+            font-size: 24px;
+          }
+          .about-achievement p {
+            font-size: 12px;
+            line-height: 1.2;
+          }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 320px) {
+          .about {
+            padding: 35px 0;
+            margin: 0 4px; /* Add margin to prevent content from being cut off */
+          }
+          .about-inner-content {
+            gap: 30px;
+            padding: 0 16px;
+            box-sizing: border-box;
+          }
+          .about-title h1 {
+            font-size: 24px;
+          }
+          .underline {
+            width: 50px;
+          }
+          .about-right {
+            gap: 25px;
+          }
+          .about-para {
+            font-size: 13px;
+            gap: 12px;
+            padding: 0 8px;
+            box-sizing: border-box;
+          }
+          .about-skills {
+            gap: 15px;
+            padding: 0 8px;
+            box-sizing: border-box;
+          }
+          .about-skill p {
+            font-size: 13px;
+          }
+          .achievement-card {
+            padding: 20px 22px;
+            max-width: 98%;
+          }
+          .about-achievements {
+            gap: 20px;
+            margin-bottom: 25px;
+          }
+          .about-achievement h1 {
+            font-size: 22px;
+          }
+          .about-achievement p {
+            font-size: 11px;
           }
         }
       `}</style>

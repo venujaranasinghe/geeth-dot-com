@@ -1,7 +1,6 @@
 "use client"
-
 import services_data from "../../assets/services_data" // Assuming this path is correct
-import { ArrowRight } from "lucide-react" // Import the arrow icon from lucide-react
+import { FaArrowRight } from "react-icons/fa" // Import the arrow icon
 
 const Service = () => {
   return (
@@ -19,7 +18,7 @@ const Service = () => {
               <p>{service.s_desc}</p>
               <div className="service-readmore">
                 <button className="readmore-btn">
-                  Read More <ArrowRight className="arrow" />
+                  Read More <FaArrowRight className="arrow" />
                 </button>
               </div>
             </div>
@@ -41,33 +40,20 @@ const Service = () => {
         }
         /* Subtle grid pattern for nostalgic tech feel on white background */
         .service::before {
-          content: "";
+          content: '';
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background-image: linear-gradient(
-              0deg,
-              transparent 24%,
-              rgba(0, 0, 0, 0.03) 25%,
-              rgba(0, 0, 0, 0.03) 26%,
-              transparent 27%
-            ),
-            linear-gradient(
-              90deg,
-              transparent 24%,
-              rgba(0, 0, 0, 0.03) 25%,
-              rgba(0, 0, 0, 0.03) 26%,
-              transparent 27%
-            );
+          background-image: linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%),
+                            linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%);
           background-size: 50px 50px;
           pointer-events: none;
           z-index: 0;
           animation: backgroundPan 60s linear infinite; /* Slow pan animation */
         }
-        .service-inner-content {
-          /* New wrapper for content */
+        .service-inner-content { /* New wrapper for content */
           max-width: 1200px; /* Max width for content */
           margin: 0 auto; /* Center content */
           padding: 0 20px; /* Horizontal padding for content */
@@ -98,15 +84,26 @@ const Service = () => {
           margin: 0 auto;
         }
         .service-container {
-          display: flex;
-          flex-wrap: wrap; /* Allow items to wrap to next line */
-          justify-content: center; /* Center items when they wrap */
+          display: flex; /* Use flex for horizontal scrolling */
+          overflow-x: auto; /* Enable horizontal scrolling */
+          scroll-snap-type: x mandatory; /* Snap to items */
+          -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
           gap: 40px; /* Gap between service cards */
+          padding-bottom: 20px; /* Space for scrollbar */
           width: 100%; /* Take full width */
           margin: 0 auto; /* Center the container */
         }
+        /* Hide scrollbar for a cleaner look */
+        .service-container::-webkit-scrollbar {
+          display: none;
+        }
+        .service-container {
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+        }
         .service-format {
           flex: 0 0 auto; /* Prevent items from shrinking */
+          scroll-snap-align: center; /* Snap to center of item */
           width: 350px; /* Fixed width for desktop items */
           display: flex;
           flex-direction: column;
@@ -200,11 +197,10 @@ const Service = () => {
           }
           .service-container {
             gap: 30px;
-            padding: 0 15px; /* Adjust padding for smaller screens */
+            padding: 0 15px 20px; /* Adjust padding for smaller screens */
           }
           .service-format {
-            width: calc(50% - 30px); /* Two columns with gap */
-            max-width: 350px; /* Maintain max width */
+            width: 300px; /* Adjust width for smaller desktops/large tablets */
             padding: 30px;
           }
           .service-format h2 {
@@ -216,29 +212,24 @@ const Service = () => {
         }
         @media (max-width: 768px) {
           .service {
-            padding: 60px 0; /* Adjust vertical padding for mobile */
+            padding: 40px 0; /* Adjust vertical padding for mobile */
           }
           .service-inner-content {
             gap: 50px;
-            padding: 0 20px; /* Less padding on mobile */
+            padding: 0 10px; /* Less padding on mobile */
           }
           .service-title h1 {
-            font-size: 48px;
+            font-size: 45px;
           }
           .underline {
-            width: 120px;
+            width: 100px;
           }
           .service-container {
-            flex-direction: column; /* Stack cards vertically */
-            overflow-x: hidden; /* Disable horizontal scrolling */
-            scroll-snap-type: none; /* Disable snap */
-            gap: 25px; /* Adjusted gap for stacked cards */
-            padding: 0; /* Remove horizontal padding */
+            gap: 20px;
+            padding: 0 10px 15px; /* Adjust padding for mobile */
           }
           .service-format {
-            width: 100%; /* Full width for mobile cards */
-            max-width: 400px; /* Cap max width for larger phones/small tablets */
-            margin: 0 auto; /* Center the card */
+            width: 280px; /* Adjust width for mobile */
             padding: 25px;
             gap: 10px;
           }
@@ -261,73 +252,8 @@ const Service = () => {
           }
         }
         @media (max-width: 480px) {
-          .service {
-            padding: 40px 0;
-          }
-          .service-inner-content {
-            gap: 40px;
-            padding: 0 15px;
-          }
-          .service-title h1 {
-            font-size: 38px;
-          }
-          .underline {
-            width: 80px;
-          }
-          .service-container {
-            gap: 20px;
-          }
           .service-format {
-            padding: 20px;
-            max-width: 320px; /* Smaller max-width for very small phones */
-          }
-          .service-format h3 {
-            font-size: 20px;
-          }
-          .service-format h2 {
-            font-size: 22px;
-          }
-          .service-format p {
-            font-size: 15px;
-          }
-          .readmore-btn {
-            padding: 7px 18px;
-            font-size: 13px;
-          }
-        }
-        @media (max-width: 375px) {
-          .service {
-            padding: 30px 0;
-          }
-          .service-inner-content {
-            gap: 30px;
-            padding: 0 10px;
-          }
-          .service-title h1 {
-            font-size: 30px;
-          }
-          .underline {
-            width: 60px;
-          }
-          .service-container {
-            gap: 15px;
-          }
-          .service-format {
-            padding: 18px;
-            max-width: 280px; /* Even smaller max-width */
-          }
-          .service-format h3 {
-            font-size: 18px;
-          }
-          .service-format h2 {
-            font-size: 20px;
-          }
-          .service-format p {
-            font-size: 14px;
-          }
-          .readmore-btn {
-            padding: 6px 15px;
-            font-size: 12px;
+            width: 250px; /* Even smaller width for very small mobiles */
           }
         }
       `}</style>

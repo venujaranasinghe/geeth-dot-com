@@ -38,12 +38,12 @@ const Footer = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 80px 0 50px; /* Vertical padding for the section */
+          padding: 80px 20px 50px; /* Added horizontal padding to prevent cutoff */
           background-color: white; /* White background to match Hero/About */
           color: #333; /* Default text color for white background */
           position: relative;
-          overflow: hidden;
           width: 100%; /* Ensure it takes full width */
+          box-sizing: border-box; /* Include padding in width calculation */
         }
         /* Subtle grid pattern for nostalgic tech feel on white background */
         .footer-background-pattern {
@@ -63,7 +63,7 @@ const Footer = () => {
         .footer-inner-content { /* New wrapper for content */
           max-width: 1200px; /* Max width for content */
           margin: 0 auto; /* Center content */
-          padding: 0 20px; /* Horizontal padding for content */
+          padding: 0 20px; /* Reduced padding since main footer now has padding */
           width: 100%; /* Ensure it takes full width within max-width */
           display: flex;
           flex-direction: column;
@@ -100,7 +100,7 @@ const Footer = () => {
         }
         .footer-top-left {
           flex: 1; /* Allow left section to grow */
-          min-width: 300px; /* Minimum width before wrapping */
+          min-width: 280px; /* Reduced minimum width for better mobile fit */
         }
         .footer-top-left h1 {
           color: #66b2b2; /* Muted teal for name */
@@ -117,11 +117,12 @@ const Footer = () => {
         .footer-top-right {
           display: flex;
           align-items: center;
-          gap: 25px; /* Adjusted gap */
+          gap: 20px; /* Reduced gap to prevent overflow */
           flex-wrap: wrap; /* Allow wrapping for input/button */
           justify-content: flex-end; /* Align to right on desktop */
           flex: 1; /* Allow right section to grow */
-          min-width: 300px; /* Minimum width before wrapping */
+          min-width: 280px; /* Reduced minimum width for better mobile fit */
+          width: 100%; /* Ensure full width utilization */
         }
         .footer-email-input {
           display: flex;
@@ -133,8 +134,10 @@ const Footer = () => {
           border: 1px solid rgba(0, 0, 0, 0.08); /* Light gray border */
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow */
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
-          flex-grow: 1; /* Allow input to grow */
-          max-width: 350px; /* Max width for input field */
+          flex: 1; /* Allow input to grow but not exceed container */
+          max-width: 300px; /* Reduced max width to prevent overflow */
+          min-width: 200px; /* Minimum width for usability */
+          box-sizing: border-box; /* Include padding in width calculation */
         }
         .footer-email-input:hover {
           border-color: #66b2b2; /* Muted teal border on hover */
@@ -166,6 +169,8 @@ const Footer = () => {
           transition: all 0.3s ease;
           font-weight: 600;
           white-space: nowrap; /* Prevent text wrapping */
+          flex-shrink: 0; /* Prevent button from shrinking */
+          box-sizing: border-box; /* Include padding in width calculation */
         }
         .footer-subscribe:hover {
           transform: translateY(-3px); /* Subtle lift */
@@ -207,9 +212,12 @@ const Footer = () => {
         }
         /* Media Queries for Responsiveness */
         @media (max-width: 1024px) {
+          .footer {
+            padding: 60px 30px 40px; /* Increased horizontal padding for tablets */
+          }
           .footer-inner-content {
             gap: 40px;
-            padding: 0 15px;
+            padding: 0 20px; /* Additional inner padding for tablets */
           }
           .footer-top {
             flex-direction: column; /* Stack on smaller desktops */
@@ -231,6 +239,7 @@ const Footer = () => {
           }
           .footer-email-input {
             max-width: none; /* Allow full width within its container */
+            width: 100%; /* Take full width on tablets */
           }
           .footer-bottom {
             flex-direction: column-reverse; /* Stack and reverse order */
@@ -245,11 +254,18 @@ const Footer = () => {
         }
         @media (max-width: 768px) {
           .footer {
-            padding: 40px 0 30px;
+            padding: 40px 25px 30px; /* Adequate horizontal padding for mobile */
           }
           .footer-inner-content {
             gap: 30px;
-            padding: 0 10px;
+            padding: 0 15px; /* Inner padding for mobile */
+          }
+          .footer-top {
+            gap: 25px; /* Reduced gap for mobile */
+          }
+          .footer-top-left,
+          .footer-top-right {
+            max-width: none; /* Remove max-width constraint on mobile */
           }
           .footer-top-left h1 {
             font-size: 24px;
@@ -257,9 +273,19 @@ const Footer = () => {
           .footer-top-left p {
             font-size: 15px;
           }
+          .footer-top-right {
+            width: 100%;
+            justify-content: center;
+            gap: 15px; /* Reduced gap for mobile */
+            flex-wrap: wrap; /* Allow wrapping if needed */
+          }
           .footer-email-input {
             padding: 10px 15px;
             gap: 10px;
+            width: 100%; /* Full width on mobile */
+            max-width: none; /* Remove max-width constraint */
+            min-width: auto; /* Remove min-width constraint */
+            flex: 1 1 auto; /* Allow flexible sizing */
           }
           .user-icon {
             font-size: 18px;
@@ -270,12 +296,66 @@ const Footer = () => {
           .footer-subscribe {
             font-size: 14px;
             padding: 10px 25px;
+            width: auto; /* Let button size itself */
+            min-width: 120px; /* Minimum width for button */
+            flex-shrink: 0; /* Prevent button from shrinking too much */
           }
           .footer-bottom {
             font-size: 13px;
           }
           .footer-bottom-right {
             gap: 15px;
+            flex-wrap: wrap; /* Allow wrapping of links */
+            justify-content: center;
+          }
+        }
+        @media (max-width: 480px) {
+          .footer {
+            padding: 30px 20px 20px; /* Generous horizontal padding for small screens */
+          }
+          .footer-inner-content {
+            padding: 0 10px; /* Additional inner padding for very small screens */
+            gap: 25px;
+          }
+          .footer-top {
+            gap: 20px;
+          }
+          .footer-top-left h1 {
+            font-size: 22px;
+          }
+          .footer-top-left p {
+            font-size: 14px;
+            line-height: 1.6;
+          }
+          .footer-top-right {
+            flex-direction: column; /* Stack input and button vertically on very small screens */
+            align-items: stretch; /* Stretch items to full width */
+            gap: 15px;
+            width: 100%;
+          }
+          .footer-email-input {
+            padding: 12px 15px;
+            gap: 12px;
+            width: 100%; /* Full width */
+            max-width: none; /* Remove all width constraints */
+            min-width: auto;
+          }
+          .footer-subscribe {
+            font-size: 14px;
+            padding: 12px 20px;
+            width: 100%; /* Full width button on very small screens */
+            text-align: center;
+            min-width: auto; /* Remove min-width constraint */
+          }
+          .footer-bottom {
+            font-size: 12px;
+            gap: 15px;
+          }
+          .footer-bottom-right {
+            gap: 12px;
+          }
+          .footer-bottom-right p {
+            font-size: 12px;
           }
         }
       `}</style>
