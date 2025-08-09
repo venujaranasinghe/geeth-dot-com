@@ -143,13 +143,13 @@ const About = () => {
         .about-title h1 {
           font-size: 65px; /* Adjusted font size */
           font-weight: 700;
-          color: #212121; /* Deep charcoal */
+          color: #66b2b2; /* Changed to muted teal */
           margin-bottom: 15px;
         }
         .underline {
           width: 150px; /* Shorter underline */
           height: 4px; /* Thinner underline */
-          background-color: #66b2b2; /* Muted teal accent to match Hero */
+          background-color: #a0a0a0; /* Changed to a slightly darker light gray */
           border-radius: 2px;
           margin: 0 auto;
         }
