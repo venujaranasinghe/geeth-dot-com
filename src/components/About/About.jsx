@@ -1,4 +1,5 @@
 "use client"
+
 // Reference your profile image directly from the public folder
 // Make sure your image is located at public/profile_img.png
 const profile_photo_url = "/profile_img.jpg"
@@ -106,24 +107,35 @@ const About = () => {
           overflow: hidden;
           width: 100%; /* Ensure it takes full width */
         }
-
         /* Subtle grid pattern for nostalgic tech feel on white background */
         .about::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background-image: linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%),
-                            linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%);
+          background-image: linear-gradient(
+              0deg,
+              transparent 24%,
+              rgba(0, 0, 0, 0.03) 25%,
+              rgba(0, 0, 0, 0.03) 26%,
+              transparent 27%
+            ),
+            linear-gradient(
+              90deg,
+              transparent 24%,
+              rgba(0, 0, 0, 0.03) 25%,
+              rgba(0, 0, 0, 0.03) 26%,
+              transparent 27%
+            );
           background-size: 50px 50px;
           pointer-events: none;
           z-index: 0;
           animation: backgroundPan 60s linear infinite; /* Slow pan animation */
         }
-
-        .about-inner-content { /* New wrapper for content */
+        .about-inner-content {
+          /* New wrapper for content */
           max-width: 1200px; /* Max width for content */
           margin: 0 auto; /* Center content */
           padding: 0 20px; /* Horizontal padding for content */
@@ -135,7 +147,6 @@ const About = () => {
           position: relative; /* For z-index to work */
           z-index: 1; /* Ensure content is above pattern */
         }
-
         .about-title {
           position: relative;
           text-align: center;
@@ -178,7 +189,6 @@ const About = () => {
           opacity: 0;
           animation: fadeInUp 0.8s ease-out forwards; /* Staggered delay applied inline */
         }
-
         .about-section {
           display: flex;
           gap: 80px; /* Generous gap between image and text */
@@ -333,22 +343,22 @@ const About = () => {
         }
         @media (max-width: 768px) {
           .about {
-            padding: 40px 0; /* Adjust vertical padding for mobile */
+            padding: 60px 0; /* Adjust vertical padding for mobile */
           }
           .about-inner-content {
-            gap: 60px;
-            padding: 0 15px;
+            gap: 50px;
+            padding: 0 20px;
           }
           .about-title h1 {
-            font-size: 45px;
+            font-size: 48px;
           }
           .underline {
-            width: 100px;
+            width: 120px;
           }
           .about-section {
             flex-direction: column; /* Stack on mobile */
             align-items: center;
-            gap: 40px;
+            gap: 30px;
           }
           .about-left {
             display: none; /* Hide image on mobile as per original */
@@ -358,12 +368,14 @@ const About = () => {
             width: 100%;
           }
           .about-para {
-            font-size: 16px;
+            font-size: 17px;
             line-height: 1.7;
             text-align: center; /* Center text on mobile */
+            gap: 15px;
           }
           .about-skills {
-            align-items: center; /* Center skills on mobile */
+            align-items: center; /* Center skills block on mobile */
+            gap: 15px;
           }
           .about-skill {
             flex-direction: column; /* Stack skill text and bar */
@@ -375,13 +387,14 @@ const About = () => {
             min-width: unset; /* Remove min-width */
             width: 100%; /* Full width for text */
             text-align: left;
+            font-size: 17px;
           }
           .skill-bar-container {
             width: 100%; /* Full width for bar container */
           }
           .about-achievements {
             flex-direction: column; /* Stack achievements on mobile */
-            gap: 30px;
+            gap: 20px;
             margin-bottom: 40px;
           }
           .achievement-card {
@@ -390,6 +403,87 @@ const About = () => {
           }
           .vertical-line {
             display: none; /* Hide vertical lines on mobile */
+          }
+          .about-achievement h1 {
+            font-size: 40px;
+          }
+          .about-achievement p {
+            font-size: 15px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .about {
+            padding: 40px 0;
+          }
+          .about-inner-content {
+            gap: 40px;
+            padding: 0 15px;
+          }
+          .about-title h1 {
+            font-size: 38px;
+          }
+          .underline {
+            width: 80px;
+          }
+          .about-section {
+            gap: 25px;
+          }
+          .about-para {
+            font-size: 15px;
+            gap: 10px;
+          }
+          .about-skills {
+            gap: 10px;
+          }
+          .about-skill p {
+            font-size: 15px;
+          }
+          .achievement-card {
+            padding: 18px 25px;
+          }
+          .about-achievements {
+            gap: 15px;
+          }
+          .about-achievement h1 {
+            font-size: 32px;
+          }
+          .about-achievement p {
+            font-size: 14px;
+          }
+        }
+
+        @media (max-width: 375px) {
+          .about {
+            padding: 30px 0;
+          }
+          .about-inner-content {
+            gap: 30px;
+            padding: 0 10px;
+          }
+          .about-title h1 {
+            font-size: 30px;
+          }
+          .underline {
+            width: 60px;
+          }
+          .about-section {
+            gap: 20px;
+          }
+          .about-para {
+            font-size: 14px;
+          }
+          .about-skill p {
+            font-size: 14px;
+          }
+          .achievement-card {
+            padding: 15px 20px;
+          }
+          .about-achievement h1 {
+            font-size: 28px;
+          }
+          .about-achievement p {
+            font-size: 13px;
           }
         }
       `}</style>
