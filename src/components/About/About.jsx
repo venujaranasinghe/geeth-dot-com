@@ -6,92 +6,105 @@ const profile_photo_url = "/profile_img.jpg"
 const About = () => {
   return (
     <div id="about" className="about">
-      <div className="about-title">
-        <h1>About me</h1>
-        <div className="underline"></div>
-      </div>
-      {/* Section Container */}
-      <div className="about-section">
-        {/* Right Side Image */}
-        <div className="about-left">
-          <img src={profile_photo_url || "/placeholder.svg"} alt="Profile" className="profile-image" />
+      <div className="about-inner-content">
+        {" "}
+        {/* New wrapper for content */}
+        <div className="about-title">
+          <h1 className="animated-title">About me</h1>
+          <div className="underline animated-underline"></div>
         </div>
-        {/* Left Side Content */}
-        <div className="about-right">
-          <div className="about-para">
-            <p>
-              As an undergraduate in Computer Science at Sri Lanka Institute of Information Technology (SLIIT), I have a
-              strong foundation in programming languages, including C, Python, Java, and Arduino. My expertise extends
-              to web development, database management, and front-end technologies like React and Tailwind CSS.
-            </p>
-            <p>
-              I have a passion for creating efficient and user-friendly software solutions, whether it’s developing
-              dynamic web applications or building innovative hardware projects with Arduino. My experience spans across
-              diverse projects, including eCommerce platforms, smart systems, and APIs, showcasing my ability to solve
-              complex problems through technology.
-            </p>
-            <p>
-              I am committed to continuous learning and staying updated with industry trends, aiming to contribute to
-              impactful projects that blend creativity, functionality, and technical excellence.
-            </p>
+        {/* Section Container */}
+        <div className="about-section">
+          {/* Right Side Image */}
+          <div className="about-left">
+            <img src={profile_photo_url || "/placeholder.svg"} alt="Profile" className="profile-image animated-image" />
           </div>
-          <div className="about-skills">
-            <div className="about-skill">
-              {" "}
-              <p>HTML & CSS</p>
-              <hr style={{ width: "90%" }} />
+          {/* Left Side Content */}
+          <div className="about-right">
+            <div className="about-para">
+              <p className="animated-para">
+                As an undergraduate in Computer Science at Sri Lanka Institute of Information Technology (SLIIT), I have
+                a strong foundation in programming languages, including C, Python, Java, and Arduino. My expertise
+                extends to web development, database management, and front-end technologies like React and Tailwind CSS.
+              </p>
+              <p className="animated-para" style={{ animationDelay: "0.3s" }}>
+                I have a passion for creating efficient and user-friendly software solutions, whether it’s developing
+                dynamic web applications or building innovative hardware projects with Arduino. My experience spans
+                across diverse projects, including eCommerce platforms, smart systems, and APIs, showcasing my ability
+                to solve complex problems through technology.
+              </p>
+              <p className="animated-para" style={{ animationDelay: "0.6s" }}>
+                I am committed to continuous learning and staying updated with industry trends, aiming to contribute to
+                impactful projects that blend creativity, functionality, and technical excellence.
+              </p>
             </div>
-            <div className="about-skill">
-              {" "}
-              <p>React JS</p>
-              <hr style={{ width: "75%" }} />
-            </div>
-            <div className="about-skill">
-              {" "}
-              <p>Java</p>
-              <hr style={{ width: "85%" }} />
-            </div>
-            <div className="about-skill">
-              {" "}
-              <p>Python</p>
-              <hr style={{ width: "70%" }} />
+            <div className="about-skills">
+              <div className="about-skill animated-skill" style={{ animationDelay: "0.9s" }}>
+                <p>HTML & CSS</p>
+                <div className="skill-bar-container">
+                  <div className="skill-bar-fill" style={{ width: "90%" }}></div>
+                </div>
+              </div>
+              <div className="about-skill animated-skill" style={{ animationDelay: "1.1s" }}>
+                <p>React JS</p>
+                <div className="skill-bar-container">
+                  <div className="skill-bar-fill" style={{ width: "75%" }}></div>
+                </div>
+              </div>
+              <div className="about-skill animated-skill" style={{ animationDelay: "1.3s" }}>
+                <p>Java</p>
+                <div className="skill-bar-container">
+                  <div className="skill-bar-fill" style={{ width: "85%" }}></div>
+                </div>
+              </div>
+              <div className="about-skill animated-skill" style={{ animationDelay: "1.5s" }}>
+                <p>Python</p>
+                <div className="skill-bar-container">
+                  <div className="skill-bar-fill" style={{ width: "70%" }}></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* Achievements Section */}
-      <div className="about-achievements">
-        <div className="about-achievement">
-          <h1>01+</h1>
-          <p>YEAR OF EXPERIENCE</p>
+        {/* Achievements Section */}
+        <div className="about-achievements">
+          <div className="achievement-card animated-achievement" style={{ animationDelay: "1.8s" }}>
+            <div className="about-achievement">
+              <h1>01+</h1>
+              <p>YEAR OF EXPERIENCE</p>
+            </div>
+          </div>
+          {/* Vertical line */}
+          <div className="vertical-line"></div>
+          <div className="achievement-card animated-achievement" style={{ animationDelay: "2.1s" }}>
+            <div className="about-achievement">
+              <h1>05+</h1>
+              <p>PROJECTS COMPLETED</p>
+            </div>
+          </div>
+          {/* Vertical line */}
+          <div className="vertical-line"></div>
+          <div className="achievement-card animated-achievement" style={{ animationDelay: "2.4s" }}>
+            <div className="about-achievement">
+              <h1>01+</h1>
+              <p>HAPPY CLIENTS</p>
+            </div>
+          </div>
         </div>
-        {/* Vertical line */}
-        <div className="vertical-line"></div>
-        <div className="about-achievement">
-          <h1>05+</h1>
-          <p>PROJECTS COMPLETED</p>
-        </div>
-        {/* Vertical line */}
-        <div className="vertical-line"></div>
-        <div className="about-achievement">
-          <h1>01+</h1>
-          <p>HAPPY CLIENTS</p>
-        </div>
-      </div>
+      </div>{" "}
+      {/* End of about-inner-content */}
       <style jsx>{`
         .about {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 100px; /* Increased gap for more whitespace */
-          margin: 80px auto; /* Centered with auto margins */
-          max-width: 1200px; /* Max width for content */
-          padding: 0 20px; /* Horizontal padding */
+          padding: 80px 0; /* Vertical padding for the section */
           background-color: white; /* White background to match Hero */
           color: #333; /* Default text color for white background */
           position: relative;
           overflow: hidden;
+          width: 100%; /* Ensure it takes full width */
         }
 
         /* Subtle grid pattern for nostalgic tech feel on white background */
@@ -107,12 +120,25 @@ const About = () => {
           background-size: 50px 50px;
           pointer-events: none;
           z-index: 0;
+          animation: backgroundPan 60s linear infinite; /* Slow pan animation */
+        }
+
+        .about-inner-content { /* New wrapper for content */
+          max-width: 1200px; /* Max width for content */
+          margin: 0 auto; /* Center content */
+          padding: 0 20px; /* Horizontal padding for content */
+          width: 100%; /* Ensure it takes full width within max-width */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 100px; /* Gap between main sections within the content wrapper */
+          position: relative; /* For z-index to work */
+          z-index: 1; /* Ensure content is above pattern */
         }
 
         .about-title {
           position: relative;
           text-align: center;
-          z-index: 1; /* Ensure title is above pattern */
         }
         .about-title h1 {
           font-size: 65px; /* Adjusted font size */
@@ -127,12 +153,37 @@ const About = () => {
           border-radius: 2px;
           margin: 0 auto;
         }
+        /* Animations for About section */
+        .animated-title {
+          opacity: 0;
+          animation: fadeInUp 1s ease-out forwards;
+        }
+        .animated-underline {
+          opacity: 0;
+          animation: fadeIn 1s ease-out forwards 0.3s;
+        }
+        .animated-image {
+          opacity: 0;
+          animation: fadeIn 1s ease-out forwards 0.6s;
+        }
+        .animated-para {
+          opacity: 0;
+          animation: fadeInUp 0.8s ease-out forwards; /* Staggered delay applied inline */
+        }
+        .animated-skill {
+          opacity: 0;
+          animation: slideInFromLeft 0.8s ease-out forwards; /* Staggered delay applied inline */
+        }
+        .animated-achievement {
+          opacity: 0;
+          animation: fadeInUp 0.8s ease-out forwards; /* Staggered delay applied inline */
+        }
+
         .about-section {
           display: flex;
           gap: 80px; /* Generous gap between image and text */
           align-items: flex-start; /* Align items to the top */
           width: 100%;
-          z-index: 1; /* Ensure section content is above pattern */
         }
         .about-left {
           flex-shrink: 0; /* Prevent image from shrinking */
@@ -177,13 +228,20 @@ const About = () => {
           font-weight: 500;
           color: #212121; /* Deep charcoal to match Hero */
         }
-        .about-skill hr {
-          outline: none;
-          border: none;
-          height: 6px; /* Thinner bar */
-          border-radius: 3px;
-          background-color: #66b2b2; /* Muted teal for skill bars to match Hero */
-          flex-grow: 1; /* Allow bar to take remaining space */
+        .skill-bar-container {
+          flex-grow: 1;
+          height: 8px; /* Slightly thicker bar */
+          background-color: #e0e0e0; /* Light gray background for the bar track */
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+        }
+        .skill-bar-fill {
+          height: 100%;
+          background-color: #66b2b2; /* Muted teal fill */
+          border-radius: 4px;
+          transition: width 0.8s ease-out; /* Smooth fill animation */
+          box-shadow: 0 0 8px rgba(102, 178, 178, 0.5); /* Subtle glow on fill */
         }
         .about-skill:hover {
           transform: translateX(10px); /* Subtle slide effect */
@@ -195,14 +253,30 @@ const About = () => {
           margin-bottom: 80px;
           flex-wrap: wrap; /* Allow wrapping on smaller screens */
           gap: 40px; /* Gap between achievements */
-          z-index: 1; /* Ensure achievements are above pattern */
+        }
+        .achievement-card {
+          background: rgba(255, 255, 255, 0.7); /* Subtle white background for each card */
+          border: 1px solid rgba(0, 0, 0, 0.08); /* Light border */
+          border-radius: 12px;
+          padding: 25px 35px; /* Padding inside the card */
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Soft shadow */
+          transition: all 0.3s ease;
+          flex: 1; /* Allow cards to grow */
+          min-width: 220px; /* Minimum width for cards */
+          max-width: 30%; /* Max width for cards in a row */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .achievement-card:hover {
+          transform: translateY(-8px); /* Lift effect */
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
         }
         .about-achievement {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 10px;
-          transition: transform 0.4s ease;
           text-align: center;
         }
         .about-achievement h1 {
@@ -216,9 +290,6 @@ const About = () => {
           color: #495057; /* Medium dark gray to match Hero */
           line-height: 1.4;
         }
-        .about-achievement:hover {
-          transform: translateY(-10px); /* Lift effect */
-        }
         .vertical-line {
           height: 100px; /* Shorter line */
           width: 1px; /* Thinner line */
@@ -227,9 +298,8 @@ const About = () => {
         }
         /* Media Queries for Responsiveness */
         @media (max-width: 1024px) {
-          .about {
+          .about-inner-content {
             gap: 80px;
-            margin: 60px auto;
           }
           .about-title h1 {
             font-size: 55px;
@@ -251,6 +321,9 @@ const About = () => {
           .about-achievements {
             gap: 30px;
           }
+          .achievement-card {
+            max-width: 45%; /* Adjust for 2 columns on medium screens */
+          }
           .about-achievement h1 {
             font-size: 45px;
           }
@@ -260,8 +333,10 @@ const About = () => {
         }
         @media (max-width: 768px) {
           .about {
+            padding: 40px 0; /* Adjust vertical padding for mobile */
+          }
+          .about-inner-content {
             gap: 60px;
-            margin: 40px auto;
             padding: 0 15px;
           }
           .about-title h1 {
@@ -301,13 +376,17 @@ const About = () => {
             width: 100%; /* Full width for text */
             text-align: left;
           }
-          .about-skill hr {
-            width: 100%; /* Full width for bar */
+          .skill-bar-container {
+            width: 100%; /* Full width for bar container */
           }
           .about-achievements {
             flex-direction: column; /* Stack achievements on mobile */
             gap: 30px;
             margin-bottom: 40px;
+          }
+          .achievement-card {
+            max-width: 90%; /* Full width for cards on mobile */
+            padding: 20px 30px;
           }
           .vertical-line {
             display: none; /* Hide vertical lines on mobile */
