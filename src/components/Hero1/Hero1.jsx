@@ -4,7 +4,7 @@ import { FaLinkedin, FaFacebook, FaInstagram, FaGithub, FaTwitter } from "react-
 
 // Reference your profile image directly from the public folder
 // Make sure your image is located at public/profile_img.png
-const profile_photo_url = "/profile_img.png"
+const profile_photo_url = "/profile_img.jpg"
 
 const Hero = () => {
   return (
@@ -85,11 +85,11 @@ const Hero = () => {
           padding: 50px 20px;
           position: relative;
           overflow: hidden;
-          background-color: #212121; /* Darker, nostalgic background */
-          color: #e0e0e0; /* Soft off-white text */
+          background-color: white; /* Changed to white background */
+          color: #333; /* Default text color for white background */
         }
 
-        /* Add a subtle grid pattern for nostalgic tech feel */
+        /* Subtle grid pattern for nostalgic tech feel on white background */
         .hero::before {
           content: '';
           position: absolute;
@@ -97,18 +97,18 @@ const Hero = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%),
-                            linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%);
+          background-image: linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%),
+                            linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%);
           background-size: 50px 50px;
           pointer-events: none;
           z-index: 0;
         }
         .glass-card {
-          background: rgba(0, 0, 0, 0.4); /* Darker, more opaque glass */
+          background: rgba(255, 255, 255, 0.8); /* More opaque white glass for visibility on white */
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
-          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); /* Softer shadow */
+          border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle dark border */
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08); /* Softer shadow */
           border-radius: 20px;
           padding: 60px;
           max-width: 1200px;
@@ -205,7 +205,7 @@ const Hero = () => {
           font-size: 55px;
           font-weight: 700;
           animation: slideInFromLeft 1s ease-out 2s both;
-          color: #e0e0e0; /* Main text color */
+          color: #212121; /* Dark text color for white background */
           margin-top: 20px;
         }
         .hero h1 .name-highlight {
@@ -218,7 +218,7 @@ const Hero = () => {
           font-size: 19px;
           line-height: 1.7;
           animation: fadeInUp 1s ease-out 3.5s both;
-          color: #b0b0b0; /* Slightly darker light gray */
+          color: #495057; /* Medium dark gray for white background */
           margin-top: 20px;
         }
         .hero-action {
@@ -268,7 +268,7 @@ const Hero = () => {
           text-align: center;
           font-size: 24px;
           font-weight: 600;
-          color: #e0e0e0; /* Main text color */
+          color: #212121; /* Dark text color for white background */
           margin-bottom: 25px;
         }
         .social-icons {
