@@ -1,60 +1,64 @@
 "use client"
 
-import { useRef } from "react"
-import { Link as ScrollLink } from "react-scroll" // Renamed to avoid conflict with next/link
-
-// Reference your SVG assets from the public folder
-// Make sure these files are located at public/menu_open.png and public/menu_close.png
-const menu_open_svg = "/menu_open.png"
-const menu_close_svg = "/menu_close.png"
+import { useState } from "react"
+import { Link as ScrollLink } from "react-scroll"
+import { FaBars, FaTimes } from "react-icons/fa" // Import icons
 
 const Navbar = () => {
-  const menuRef = useRef(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const openMenu = () => {
-    if (menuRef.current) {
-      menuRef.current.style.right = "0"
-    }
+    setIsMenuOpen(true)
   }
 
   const closeMenu = () => {
-    if (menuRef.current) {
-      menuRef.current.style.right = "-350px" // Adjust based on desired mobile menu width
-    }
+    setIsMenuOpen(false)
   }
 
   return (
     <div className="navbar">
-      <img src={menu_open_svg || "/placeholder.svg"} onClick={openMenu} alt="Open Menu" className="nav-mob-open" />
-      <ul ref={menuRef} className="nav-menu">
-        <img
-          src={menu_close_svg || "/placeholder.svg"}
-          onClick={closeMenu}
-          alt="Close Menu"
-          className="nav-mob-close"
-        />
+      {/* Mobile menu open icon */}
+      <FaBars onClick={openMenu} className="nav-mob-open" aria-label="Open navigation menu" />
+
+      <ul className={`nav-menu ${isMenuOpen ? "nav-menu-open" : ""}`}>
+        {/* Mobile menu close icon */}
+        <FaTimes onClick={closeMenu} className="nav-mob-close" aria-label="Close navigation menu" />
         <li>
-          <ScrollLink className="anchor-link" to="home" smooth={true} duration={500} offset={-50}>
+          <ScrollLink className="anchor-link" to="home" smooth={true} duration={500} offset={-50} onClick={closeMenu}>
             <p>Home</p>
           </ScrollLink>
         </li>
         <li>
-          <ScrollLink className="anchor-link" to="about" smooth={true} duration={500} offset={-50}>
+          <ScrollLink className="anchor-link" to="about" smooth={true} duration={500} offset={-50} onClick={closeMenu}>
             <p>About Me</p>
           </ScrollLink>
         </li>
         <li>
-          <ScrollLink className="anchor-link" to="services" smooth={true} duration={500} offset={-50}>
+          <ScrollLink
+            className="anchor-link"
+            to="services"
+            smooth={true}
+            duration={500}
+            offset={-50}
+            onClick={closeMenu}
+          >
             <p>Services</p>
           </ScrollLink>
         </li>
         <li>
-          <ScrollLink className="anchor-link" to="work" smooth={true} duration={500} offset={-50}>
+          <ScrollLink className="anchor-link" to="work" smooth={true} duration={500} offset={-50} onClick={closeMenu}>
             <p>Portfolio</p>
           </ScrollLink>
         </li>
         <li>
-          <ScrollLink className="anchor-link" to="contact" smooth={true} duration={500} offset={-50}>
+          <ScrollLink
+            className="anchor-link"
+            to="contact"
+            smooth={true}
+            duration={500}
+            offset={-50}
+            onClick={closeMenu}
+          >
             <p>Contact</p>
           </ScrollLink>
         </li>
@@ -145,7 +149,7 @@ const Navbar = () => {
         /* Mobile Menu Buttons */
         .nav-mob-open,
         .nav-mob-close {
-          display: none;
+          display: none; /* Hidden by default on desktop */
           cursor: pointer;
           background: none;
           border: none;
@@ -163,13 +167,13 @@ const Navbar = () => {
             display: none;
           }
           .nav-mob-open {
-            display: block;
+            display: block; /* Show open icon on mobile */
           }
           .nav-menu {
             position: fixed;
             top: 0;
-            right: -350px; /* Hidden by default */
-            width: 280px; /* Slightly narrower mobile menu */
+            right: -350px; /* Hidden by default, slide in from right */
+            width: 280px; /* Mobile menu width */
             height: 100%;
             background-color: #2c3e50; /* Same dark background */
             flex-direction: column;
@@ -177,8 +181,11 @@ const Navbar = () => {
             gap: 25px; /* Adjusted gap */
             padding: 60px 25px; /* Adjusted padding */
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* Clearer shadow */
-            transition: right 0.5s ease;
+            transition: right 0.5s ease; /* Smooth transition */
             z-index: 1001;
+          }
+          .nav-menu.nav-menu-open {
+            right: 0; /* Slide in when open */
           }
           .nav-menu li {
             font-size: 20px; /* Adjusted font size */
@@ -190,7 +197,7 @@ const Navbar = () => {
             padding: 10px 0;
           }
           .nav-mob-close {
-            display: block;
+            display: block; /* Show close icon on mobile */
             position: absolute;
             top: 15px;
             right: 15px;
