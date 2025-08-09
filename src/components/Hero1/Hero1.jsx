@@ -153,13 +153,18 @@ const Hero = () => {
           align-items: center;
         }
         .profile-photo {
-          width: 280px;
-          height: 280px;
+          width: 400px;
+          height: 400px;
           border-radius: 50%;
           object-fit: cover;
-          border: 3px solid #66b2b2; /* Muted teal border */
-          box-shadow: 0 0 20px rgba(102, 178, 178, 0.3); /* Soft glow with new accent */
-          animation: fadeIn 1s ease-out 1.5s both;
+          border: 4px solid #66b2b2; /* Muted teal border */
+          box-shadow: 0 0 30px rgba(102, 178, 178, 0.4), 0 0 60px rgba(102, 178, 178, 0.2); /* Enhanced glow */
+          animation: fadeIn 1s ease-out 1.5s both, floatingAnimation 6s ease-in-out infinite;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-photo:hover {
+          transform: scale(1.05) translateY(-5px);
+          box-shadow: 0 0 40px rgba(102, 178, 178, 0.6), 0 0 80px rgba(102, 178, 178, 0.3);
         }
         .hello-animation {
           margin-top: 10px;
@@ -189,6 +194,20 @@ const Hero = () => {
           }
           to {
             opacity: 1;
+          }
+        }
+        @keyframes floatingAnimation {
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-20px) rotate(1deg);
+          }
+          50% {
+            transform: translateY(-10px) rotate(0deg);
+          }
+          75% {
+            transform: translateY(-15px) rotate(-1deg);
           }
         }
         @keyframes fadeInUp {
@@ -346,8 +365,8 @@ const Hero = () => {
             padding: 40px 20px; /* Less padding on small screens */
           }
           .profile-photo {
-            width: 180px;
-            height: 180px;
+            width: 250px;
+            height: 250px;
           }
           .hello-animation {
             font-size: 45px;
@@ -390,8 +409,8 @@ const Hero = () => {
             padding: 30px 15px; /* Even less padding */
           }
           .profile-photo {
-            width: 150px; /* Smaller photo */
-            height: 150px;
+            width: 200px; /* Larger than before but still mobile-friendly */
+            height: 200px;
           }
           .hello-animation {
             font-size: 38px;
@@ -436,8 +455,8 @@ const Hero = () => {
             padding: 25px 10px;
           }
           .profile-photo {
-            width: 120px;
-            height: 120px;
+            width: 160px; /* Still larger than original */
+            height: 160px;
           }
           .hello-animation {
             font-size: 32px;

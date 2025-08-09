@@ -1,10 +1,46 @@
 "use client"
 
+import { useEffect } from "react"
+
 // Reference your profile image directly from the public folder
 // Make sure your image is located at public/profile_img.jpg
 const profile_photo_url = "/profile_img.jpg"
 
 const About = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const skillBars = entry.target.querySelectorAll('.skill-bar-fill')
+            skillBars.forEach((bar) => {
+              const targetWidth = bar.getAttribute('data-width')
+              if (targetWidth) {
+                setTimeout(() => {
+                  bar.style.width = targetWidth + '%'
+                }, 500)
+              }
+            })
+          }
+        })
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    )
+
+    const skillsSection = document.querySelector('.about-skills')
+    if (skillsSection) {
+      observer.observe(skillsSection)
+    }
+
+    return () => {
+      if (skillsSection) {
+        observer.unobserve(skillsSection)
+      }
+    }
+  }, [])
   return (
     <div id="about" className="about">
       <div className="about-inner-content">
@@ -35,28 +71,59 @@ const About = () => {
               </p>
             </div>
             <div className="about-skills">
+              <h3 className="skills-title animated-skills-title" style={{ animationDelay: "0.8s" }}>Programming Languages & Technologies</h3>
               <div className="about-skill animated-skill" style={{ animationDelay: "0.9s" }}>
-                <p>HTML & CSS</p>
+                <div className="skill-info">
+                  <p>HTML & CSS</p>
+                  <span className="skill-percentage">90%</span>
+                </div>
                 <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "90%" }}></div>
+                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "90%" }} data-width="90"></div>
                 </div>
               </div>
               <div className="about-skill animated-skill" style={{ animationDelay: "1.1s" }}>
-                <p>React JS</p>
+                <div className="skill-info">
+                  <p>React JS</p>
+                  <span className="skill-percentage">75%</span>
+                </div>
                 <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "75%" }}></div>
+                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "75%" }} data-width="75"></div>
                 </div>
               </div>
               <div className="about-skill animated-skill" style={{ animationDelay: "1.3s" }}>
-                <p>Java</p>
+                <div className="skill-info">
+                  <p>Java</p>
+                  <span className="skill-percentage">85%</span>
+                </div>
                 <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "85%" }}></div>
+                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "85%" }} data-width="85"></div>
                 </div>
               </div>
               <div className="about-skill animated-skill" style={{ animationDelay: "1.5s" }}>
-                <p>Python</p>
+                <div className="skill-info">
+                  <p>Python</p>
+                  <span className="skill-percentage">70%</span>
+                </div>
                 <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "70%" }}></div>
+                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "70%" }} data-width="70"></div>
+                </div>
+              </div>
+              <div className="about-skill animated-skill" style={{ animationDelay: "1.7s" }}>
+                <div className="skill-info">
+                  <p>Arduino & IoT</p>
+                  <span className="skill-percentage">80%</span>
+                </div>
+                <div className="skill-bar-container">
+                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "80%" }} data-width="80"></div>
+                </div>
+              </div>
+              <div className="about-skill animated-skill" style={{ animationDelay: "1.9s" }}>
+                <div className="skill-info">
+                  <p>Database Management</p>
+                  <span className="skill-percentage">78%</span>
+                </div>
+                <div className="skill-bar-container">
+                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "78%" }} data-width="78"></div>
                 </div>
               </div>
             </div>
@@ -65,21 +132,21 @@ const About = () => {
         <div className="about-achievements">
           <div className="achievement-card animated-achievement" style={{ animationDelay: "1.8s" }}>
             <div className="about-achievement">
-              <h1>01+</h1>
+              <h1 className="counter-number" data-target="1">01+</h1>
               <p>YEAR OF EXPERIENCE</p>
             </div>
           </div>
           <div className="vertical-line"></div>
           <div className="achievement-card animated-achievement" style={{ animationDelay: "2.1s" }}>
             <div className="about-achievement">
-              <h1>05+</h1>
+              <h1 className="counter-number" data-target="5">05+</h1>
               <p>PROJECTS COMPLETED</p>
             </div>
           </div>
           <div className="vertical-line"></div>
           <div className="achievement-card animated-achievement" style={{ animationDelay: "2.4s" }}>
             <div className="about-achievement">
-              <h1>01+</h1>
+              <h1 className="counter-number" data-target="1">01+</h1>
               <p>HAPPY CLIENTS</p>
             </div>
           </div>
@@ -284,35 +351,114 @@ const About = () => {
           flex-direction: column;
           gap: 25px; /* Increased gap between skills */
         }
+        .skills-title {
+          font-size: 28px;
+          font-weight: 600;
+          color: #66b2b2;
+          text-align: center;
+          margin-bottom: 20px;
+          position: relative;
+        }
+        .skills-title::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: linear-gradient(45deg, #66b2b2, #87ceeb);
+          border-radius: 2px;
+        }
+        .animated-skills-title {
+          opacity: 0;
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
         .about-skill {
           display: flex;
-          gap: 30px; /* Adjusted gap between text and bar */
+          flex-direction: column;
+          gap: 12px;
+          padding: 20px;
+          background: rgba(102, 178, 178, 0.05);
+          border-radius: 12px;
+          border: 1px solid rgba(102, 178, 178, 0.1);
+          transition: all 0.4s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .about-skill::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(102, 178, 178, 0.1), transparent);
+          transition: left 0.6s ease;
+        }
+        .about-skill:hover::before {
+          left: 100%;
+        }
+        .skill-info {
+          display: flex;
+          justify-content: space-between;
           align-items: center;
-          transition: transform 0.3s ease;
         }
         .about-skill p {
-          min-width: 120px; /* Ensure text doesn't wrap too much */
-          font-size: 20px; /* Adjusted font size */
+          font-size: 18px;
           font-weight: 500;
-          color: #212121; /* Deep charcoal to match Hero */
+          color: #212121;
+          margin: 0;
+        }
+        .skill-percentage {
+          font-size: 16px;
+          font-weight: 600;
+          color: #66b2b2;
+          background: rgba(102, 178, 178, 0.1);
+          padding: 4px 12px;
+          border-radius: 20px;
+          border: 1px solid rgba(102, 178, 178, 0.2);
         }
         .skill-bar-container {
-          flex-grow: 1;
-          height: 8px; /* Slightly thicker bar */
-          background-color: #e0e0e0; /* Light gray background for the bar track */
-          border-radius: 4px;
+          width: 100%;
+          height: 10px;
+          background-color: rgba(224, 224, 224, 0.8);
+          border-radius: 6px;
           overflow: hidden;
-          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+          position: relative;
         }
         .skill-bar-fill {
           height: 100%;
-          background-color: #66b2b2; /* Muted teal fill */
-          border-radius: 4px;
-          transition: width 0.8s ease-out; /* Smooth fill animation */
-          box-shadow: 0 0 8px rgba(102, 178, 178, 0.5); /* Subtle glow on fill */
+          background: linear-gradient(45deg, #66b2b2, #87ceeb, #66b2b2);
+          background-size: 200% 200%;
+          border-radius: 6px;
+          transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 0 10px rgba(102, 178, 178, 0.4);
+          animation: skillBarShimmer 3s ease-in-out infinite;
+          position: relative;
+        }
+        .skill-bar-fill::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 4px;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 0 6px 6px 0;
+        }
+        @keyframes skillBarShimmer {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
         }
         .about-skill:hover {
-          transform: translateX(10px); /* Subtle slide effect */
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 8px 25px rgba(102, 178, 178, 0.15);
         }
 
         /* Touch device improvements */
@@ -341,20 +487,36 @@ const About = () => {
         .achievement-card {
           background: rgba(255, 255, 255, 0.7); /* Subtle white background for each card */
           border: 1px solid rgba(0, 0, 0, 0.08); /* Light border */
-          border-radius: 12px;
-          padding: 25px 35px; /* Padding inside the card */
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Soft shadow */
-          transition: all 0.3s ease;
+          border-radius: 16px;
+          padding: 30px 40px; /* Padding inside the card */
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Soft shadow */
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           flex: 1; /* Allow cards to grow */
           min-width: 220px; /* Minimum width for cards */
           max-width: 30%; /* Max width for cards in a row */
           display: flex;
           justify-content: center;
           align-items: center;
+          position: relative;
+          overflow: hidden;
+        }
+        .achievement-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(102, 178, 178, 0.1), transparent);
+          transition: left 0.6s ease;
+        }
+        .achievement-card:hover::before {
+          left: 100%;
         }
         .achievement-card:hover {
-          transform: translateY(-8px); /* Lift effect */
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+          transform: translateY(-12px) rotateX(5deg);
+          box-shadow: 0 12px 35px rgba(102, 178, 178, 0.15);
+          border-color: rgba(102, 178, 178, 0.2);
         }
         .about-achievement {
           display: flex;
@@ -367,6 +529,23 @@ const About = () => {
           font-size: 55px; /* Adjusted font size */
           font-weight: 700;
           color: #66b2b2; /* Muted teal for numbers to match Hero */
+          position: relative;
+        }
+        .counter-number {
+          background: linear-gradient(45deg, #66b2b2, #87ceeb, #66b2b2);
+          background-size: 200% 200%;
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: counterGradient 3s ease-in-out infinite;
+        }
+        @keyframes counterGradient {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
         }
         .about-achievement p {
           font-size: 18px; /* Adjusted font size */
@@ -484,20 +663,19 @@ const About = () => {
             padding: 0 15px;
             box-sizing: border-box;
           }
+          .skills-title {
+            font-size: 22px;
+            text-align: center;
+          }
           .about-skill {
-            flex-direction: column;
-            gap: 12px;
             width: 100%;
-            align-items: flex-start;
-            text-align: left;
-            padding: 10px 0;
+            padding: 15px;
           }
           .about-skill p {
-            min-width: unset;
-            width: 100%;
-            text-align: left;
             font-size: 16px;
-            margin-bottom: 5px;
+          }
+          .skill-percentage {
+            font-size: 14px;
           }
           .skill-bar-container {
             width: 100%;
@@ -565,12 +743,17 @@ const About = () => {
             padding: 0 12px;
             box-sizing: border-box;
           }
+          .skills-title {
+            font-size: 20px;
+          }
           .about-skill {
-            gap: 12px;
-            padding: 8px 0;
+            padding: 12px;
           }
           .about-skill p {
             font-size: 15px;
+          }
+          .skill-percentage {
+            font-size: 13px;
           }
           .skill-bar-container {
             height: 8px;
@@ -628,12 +811,17 @@ const About = () => {
             padding: 0 10px;
             box-sizing: border-box;
           }
+          .skills-title {
+            font-size: 18px;
+          }
           .about-skill {
-            gap: 10px;
-            padding: 6px 0;
+            padding: 10px;
           }
           .about-skill p {
             font-size: 14px;
+          }
+          .skill-percentage {
+            font-size: 12px;
           }
           .skill-bar-container {
             height: 6px;
@@ -687,8 +875,17 @@ const About = () => {
             padding: 0 8px;
             box-sizing: border-box;
           }
+          .skills-title {
+            font-size: 16px;
+          }
+          .about-skill {
+            padding: 8px;
+          }
           .about-skill p {
             font-size: 13px;
+          }
+          .skill-percentage {
+            font-size: 11px;
           }
           .achievement-card {
             padding: 20px 22px;
