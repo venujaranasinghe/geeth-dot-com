@@ -1,11 +1,13 @@
-*{
-  margin :0;
-  padding: 0;
-
+/* Or src/App.css, depending on your project setup */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white; /* Set the global white background */
 }
-body{
-  height: 100vh;
-  background: #ffffff;
-  color: rgb(0, 0, 0);
-  font-family: 'outfit';
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
