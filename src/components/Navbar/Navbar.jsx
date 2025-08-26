@@ -76,6 +76,11 @@ const Navbar = () => {
           </ScrollLink>
         </li>
         <li>
+          <ScrollLink className="anchor-link" to="certificates" smooth={true} duration={500} offset={-50} onClick={closeMenu}>
+            Certificates
+          </ScrollLink>
+        </li>
+        <li>
           <ScrollLink
             className="anchor-link"
             to="contact"
@@ -105,7 +110,7 @@ const Navbar = () => {
           left: 50%; /* Start from center */
           transform: translateX(-50%); /* Pull back by half its width to truly center */
           z-index: 1000;
-          max-width: 550px; /* Reduced max width for a smaller pill */
+          max-width: 650px; /* Increased max width for additional menu item */
           width: 90%; /* Responsive width */
           box-sizing: border-box;
           transition: all 0.3s ease; /* Smooth transition for transparency */

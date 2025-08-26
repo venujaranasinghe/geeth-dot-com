@@ -4,6 +4,7 @@ import Hero1 from './components/Hero1/Hero1'
 import About from './components/About/About'
 import Service from './components/Service/Service'
 import MyWork from './components/MyWork/MyWork'
+import Certificates from './components/Certificates/Certificates'
 import Contact from './components/Contact/Contact'
 import Footer from './components/Footer/Footer'
 
@@ -15,6 +16,7 @@ const App = () => {
       <About/>
       <Service/>
       <MyWork/>
+      <Certificates/>
       <Contact/>
       <Footer/>
     </div>
