@@ -38,7 +38,7 @@ function Certificates() {
           overflow: hidden;
           width: 100%;
         }
-        /* Subtle diagonal pattern for variety */
+        /* Subtle grid pattern for nostalgic tech feel on white background */
         .certificates::before {
           content: '';
           position: absolute;
@@ -46,12 +46,12 @@ function Certificates() {
           left: 0;
           width: 100%;
           height: 100%;
-          background-image: linear-gradient(45deg, transparent 24%, rgba(0, 0, 0, 0.02) 25%, rgba(0, 0, 0, 0.02) 26%, transparent 27%),
-                            linear-gradient(-45deg, transparent 24%, rgba(0, 0, 0, 0.02) 25%, rgba(0, 0, 0, 0.02) 26%, transparent 27%);
-          background-size: 60px 60px;
+          background-image: linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%),
+                            linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 26%, transparent 27%);
+          background-size: 50px 50px;
           pointer-events: none;
           z-index: 0;
-          animation: backgroundPan 80s linear infinite;
+          animation: backgroundPan 60s linear infinite; /* Slow pan animation */
         }
         .certificates-inner-content {
           max-width: 1200px;
@@ -72,7 +72,7 @@ function Certificates() {
         .certificates-title h1 {
           font-size: 65px;
           font-weight: 700;
-          color: #4a9e9e; /* Slightly different teal shade for certificates */
+          color: #66b2b2; /* Muted teal to match MyWork section */
           margin-bottom: 15px;
         }
         .underline {
@@ -147,13 +147,13 @@ function Certificates() {
         }
         .certificate-overlay span {
           font-size: 12px;
-          color: #4a9e9e;
+          color: #66b2b2;
           font-weight: 500;
         }
         .certificate-item:hover {
           transform: translateY(-10px) scale(1.02);
           box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-          border-color: #4a9e9e;
+          border-color: #66b2b2;
         }
         .certificate-item:hover img {
           transform: scale(1.05);
