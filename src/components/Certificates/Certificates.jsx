@@ -51,7 +51,6 @@ function Certificates() {
           background-size: 50px 50px;
           pointer-events: none;
           z-index: 0;
-          animation: backgroundPan 60s linear infinite; /* Slow pan animation */
         }
         .certificates-inner-content {
           max-width: 1200px;
@@ -189,14 +188,6 @@ function Certificates() {
           }
           to {
             opacity: 1;
-          }
-        }
-        @keyframes backgroundPan {
-          0% {
-            background-position: 0 0;
-          }
-          100% {
-            background-position: 100px 100px;
           }
         }
         /* Media Queries for Responsiveness */
