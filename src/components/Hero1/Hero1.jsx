@@ -5,7 +5,7 @@ import { Linkedin, Facebook, Instagram, Github, Twitter } from "lucide-react" //
 
 // Reference your profile image directly from the public folder
 // Make sure your image is located at public/profile_img.jpg
-const profile_photo_url = "/profile_img.jpg"
+const profile_photo_url = "/profile1.png"
 
 const Hero = () => {
   return (
