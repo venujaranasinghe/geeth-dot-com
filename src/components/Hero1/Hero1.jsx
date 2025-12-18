@@ -25,7 +25,7 @@ const Hero = () => {
               <ScrollLink className="hero-connect" to="contact" smooth={true} duration={500} offset={-50}>
                 Connect with Me
               </ScrollLink>
-              <div className="hero-resume">My Resume</div>
+              <a href="/cv.pdf" download="Geeth_Seneviratne_CV.pdf" className="hero-resume">My Resume</a>
             </div>
             <div className="social-container">
               <h4>Let's connect!</h4>
