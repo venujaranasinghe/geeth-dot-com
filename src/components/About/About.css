@@ -56,28 +56,68 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .skills-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .skill-percentage {
+    font-size: 18px;
+    font-weight: 500;
+    color: #B415FF;
+  }
+
+  .skill-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #333;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(264deg, #DF8908 -5.09%, #B415FF 106.28%);
+    transition: width 1s ease-in-out;
   }
 
   .about-skill{
     display: flex;
-    gap: 50px;
+    flex-direction: column;
+    gap: 5px;
     align-items: center;
+    justify-content: center;
     transition: 0.3s;
+    width: 100%;
+    max-width: 500px;
   }
 
   .about-skill p{
     min-width: 150px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
+    text-align: left;
+    margin: 0;
   }
 
   .about-skill hr{
-    outline: none;
-    border: none;
-    width: 50%;
-    height: 8px;
-    border-radius: 50px;
-    background: linear-gradient(264deg, #DF8908 -5.09%, #B415FF 106.28% );
+    display: none;
   }
 
   .about-achievements{
@@ -130,7 +170,7 @@
     .about{
       gap: 80px;
       margin: 50px 70px;
-      align-items: start;
+      align-items: center;
     }
     .about-title h1{
       font-size: 50px;
@@ -147,16 +187,24 @@
       line-height: 32px;
       
     }
-    .about-skill{
-      gap: 20px;
+    .about-skills {
       align-items: center;
     }
+    .about-skill{
+      gap: 10px;
+      align-items: center;
+      max-width: 100%;
+    }
     .about-skill p{
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    .skills-title {
+      font-size: 22px;
     }
 
     .about-skill hr{
-      height: 6px;
+      display: none;
     }
     .about-achievements{
       justify-content: space-between;
