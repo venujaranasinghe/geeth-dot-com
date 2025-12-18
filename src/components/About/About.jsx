@@ -1,46 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
-
 // Reference your profile image directly from the public folder
 // Make sure your image is located at public/profile_img.jpg
 const profile_photo_url = "/profile_img.jpg"
 
 const About = () => {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const skillBars = entry.target.querySelectorAll('.skill-bar-fill')
-            skillBars.forEach((bar) => {
-              const targetWidth = bar.getAttribute('data-width')
-              if (targetWidth) {
-                setTimeout(() => {
-                  bar.style.width = targetWidth + '%'
-                }, 500)
-              }
-            })
-          }
-        })
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
-      }
-    )
-
-    const skillsSection = document.querySelector('.about-skills')
-    if (skillsSection) {
-      observer.observe(skillsSection)
-    }
-
-    return () => {
-      if (skillsSection) {
-        observer.unobserve(skillsSection)
-      }
-    }
-  }, [])
   return (
     <div id="about" className="about">
       <div className="about-inner-content">
@@ -69,63 +33,6 @@ const About = () => {
                 I am committed to continuous learning and staying updated with industry trends, aiming to contribute to
                 impactful projects that blend creativity, functionality, and technical excellence.
               </p>
-            </div>
-            <div className="about-skills">
-              <h3 className="skills-title animated-skills-title" style={{ animationDelay: "0.8s" }}>Programming Languages & Technologies</h3>
-              <div className="about-skill animated-skill" style={{ animationDelay: "0.9s" }}>
-                <div className="skill-info">
-                  <p>HTML & CSS</p>
-                  <span className="skill-percentage">90%</span>
-                </div>
-                <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "90%" }} data-width="90"></div>
-                </div>
-              </div>
-              <div className="about-skill animated-skill" style={{ animationDelay: "1.1s" }}>
-                <div className="skill-info">
-                  <p>React JS</p>
-                  <span className="skill-percentage">75%</span>
-                </div>
-                <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "75%" }} data-width="75"></div>
-                </div>
-              </div>
-              <div className="about-skill animated-skill" style={{ animationDelay: "1.3s" }}>
-                <div className="skill-info">
-                  <p>Java</p>
-                  <span className="skill-percentage">85%</span>
-                </div>
-                <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "85%" }} data-width="85"></div>
-                </div>
-              </div>
-              <div className="about-skill animated-skill" style={{ animationDelay: "1.5s" }}>
-                <div className="skill-info">
-                  <p>Python</p>
-                  <span className="skill-percentage">70%</span>
-                </div>
-                <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "70%" }} data-width="70"></div>
-                </div>
-              </div>
-              <div className="about-skill animated-skill" style={{ animationDelay: "1.7s" }}>
-                <div className="skill-info">
-                  <p>Arduino & IoT</p>
-                  <span className="skill-percentage">80%</span>
-                </div>
-                <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "80%" }} data-width="80"></div>
-                </div>
-              </div>
-              <div className="about-skill animated-skill" style={{ animationDelay: "1.9s" }}>
-                <div className="skill-info">
-                  <p>Database Management</p>
-                  <span className="skill-percentage">78%</span>
-                </div>
-                <div className="skill-bar-container">
-                  <div className="skill-bar-fill" style={{ width: "0%", "--target-width": "78%" }} data-width="78"></div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -359,7 +266,7 @@ const About = () => {
           margin-bottom: 20px;
           position: relative;
         }
-        .skills-title::after {
+        .about-skills .skills-title::after {
           content: "";
           position: absolute;
           bottom: -10px;
